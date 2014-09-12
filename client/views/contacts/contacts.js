@@ -13,7 +13,6 @@
 
     $scope.add = function(){
       Contact.create($scope.contact).then(function(response){
-        console.log('$scope.contact in $scope.add>>>>>>>>>', $scope.contact);
         $scope.contacts.push(response.data.contact);
         $scope.contact = {};
       });
