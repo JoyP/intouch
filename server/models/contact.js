@@ -1,6 +1,9 @@
 'use strict';
 
-function Contact(o){
+var Mongo  = require('mongodb');
+
+function Contact(ownerId,o){
+  this.ownerId  = Mongo.ObjectID();
   this.fname    = o.fname;
   this.lname    = o.lname;
   this.phone    = o.phone;
