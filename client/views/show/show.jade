@@ -7,29 +7,29 @@ h3 Show Page
         .col-xs-3.col-xs-offset-3
           .form-group
             label(for='photo') Photo
-            input.form-control#photo(name='photo', type='text', ng-model='show.photo', required)
+            input.form-control#photo(name='photo', type='text', ng-model='contact.photo', required)
           .form-group
             label(for='name') Name
-            input.form-control#name(name='name', type='text', ng-model='show.name', required, autofocus)
+            input.form-control#name(name='name', type='text', ng-model='contact.name', required, autofocus)
           .form-group
             label(for='address') Address
-            input.form-control#address(name='address', type='text', ng-model='show.address', required)
+            input.form-control#address(name='address', type='text', ng-model='contact.address', required)
           .form-group
             label(for='birthday') Birthday
-            input.form-control#birthday(name='birthday', type='text', ng-model='show.birthday', required)
+            input.form-control#birthday(name='birthday', type='text', ng-model='contact.birthday', required)
         .col-xs-3
           .form-group
             label(for='phone') Phone Number
-            input.form-control#phone(name='phone', type='text', ng-model='show.phone', required)
+            input.form-control#phone(name='phone', type='text', ng-model='contact.phone', required)
           .form-group
             label(for='email') Email Address
-            input.form-control#email(name='email', type='text', ng-model='show.email', required)
+            input.form-control#email(name='email', type='text', ng-model='contact.email', required)
           .form-group
             label(for='facebook') Facebook
-            input.form-control#facebook(name='facebook', type='text', ng-model='show.facebook', required)
+            input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook', required)
           .form-group
             label(for='twitter') Twitter
-            input.form-control#twitter(name='twitter', type='text', ng-model='show.twitter', required)
+            input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter', required)
           button.btn.btn-success(ng-click='updateContact()') Update Contact
 
 .row
@@ -50,7 +50,7 @@ h3 Show Page
           .row
             .col-xs-1
             .col-xs-6
-              h2.fa.fa-envelope-o &nbsp; = {{contact.email}}
+              h2.fa.fa-envelope-o &nbsp; {{contact.email}}
           .row
             .col-xs-1
             .col-xs-6
