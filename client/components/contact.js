@@ -5,7 +5,7 @@
   .factory('Contact', ['$http', function($http){
 
     function create(contact){
-      return $http.post('/contacts');
+      return $http.post('/contacts', contact);
     }
 
     function all(){

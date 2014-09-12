@@ -22,7 +22,8 @@ module.exports = function(app, express){
   app.get('/home', home.index);
   app.post('/contacts', contacts.create);
   app.get('/contacts', contacts.index);
-  app.post('/show/:id', contacts.update);
+  app.post('/contacts/:id', contacts.update);
+  app.get('/contacts/:id', contacts.show);
 
 
   console.log('Express: Routes Loaded');

@@ -2,6 +2,22 @@
   "name": "intouch",
   "version": "0.0.0",
   "description": "inTouch",
+  "directories": {
+    "test": "test"
+  },
+  "bin": {
+    "coverall": "./node_modules/coveralls/bin/coverall.js"
+  },
+  "scripts": {
+    "test": "mocha test --recursive -R spec --timeout 5000",
+    "syntax": "./node_modules/grunt-cli/bin/grunt build",
+    "coveralls": "mocha test --recursive -r blanket -R mocha-lcov-reporter | coveralls"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "/server/"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/JoyP/intouch"
@@ -23,6 +39,7 @@
     "bcrypt": "^0.8.0",
     "body-parser": "^1.8.1",
     "chalk": "^0.5.1",
+    "connect-flash": "^0.1.1",
     "connect-redis": "^2.1.0",
     "express": "^4.9.0",
     "express-method-override": "0.0.3",
@@ -34,6 +51,9 @@
     "underscore": "^1.7.0"
   },
   "devDependencies": {
+    "blanket": "^1.1.6",
+    "chai": "^1.9.1",
+    "coveralls": "^2.11.1",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.5.0",
@@ -43,6 +63,8 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jscs": "^0.7.1",
     "grunt-shell": "^1.1.1",
-    "jshint-stylish": "^0.4.0"
+    "jshint-stylish": "^0.4.0",
+    "mocha": "^1.21.4",
+    "mocha-lcov-reporter": "0.0.1"
   }
 }
