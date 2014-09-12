@@ -32,6 +32,7 @@ Contact.all = function(cb){
 Contact.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
   Contact.collection.findOne({_id:_id}, function(err, obj){
+    console.log('>>>OBJ<<<', obj);
     var contact = Object.create(Contact.prototype);
     contact = _.extend(contact, obj);
     cb(err, contact);

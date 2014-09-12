@@ -27,10 +27,9 @@ exports.update = function(req, res){
   });
 };
 
-/*exports.show = function(req, res){
-  Contact.findById(req.params.itemId, function(err, item){
-    User.findById(item.ownerId, function(err, client){
-      res.send({contact:contact});
-    });
+exports.show = function(req, res){
+  Contact.findById(req.params.id, function(err, contact){
+    console.log('CONTACT!!!!!!!', contact);
+    res.send({contact:contact});
   });
-};*/
+};
