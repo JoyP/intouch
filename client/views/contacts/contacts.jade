@@ -1,0 +1,40 @@
+h3 Contacts
+
+.row
+  .col-xs-3
+    form(novalidate, name='newContact', role='form')
+      h4 Add a Contact
+      .form-group
+        label(for='fname') First Name
+        input.form-control#fname(name='fname', type='text', ng-model='contact.fname', autofocus)
+      .form-group
+        label(for='lname') Last Name
+        input.form-control#lname(name='lname', type='text', ng-model='contact.lname')
+      .form-group
+        label(for='phone') Phone Number
+        input.form-control#phone(name='phone', type='tel', ng-model='contact.phone')
+      .form-group
+        label(for='email') E-mail
+        input.form-control#email(name='email', type='email', ng-model='contact.email')
+      .form-group
+        label(for='photo') Photo
+        input.form-control#photo(name='photo', type='text', ng-model='contact.photo')
+      .form-group
+        button.btn.btn-primary(ng-click='add()') Add Contact
+.row
+  .col-cs-12
+    .panel.panel-default
+      .panel-body
+        table.table.table-bordered
+          thead
+            tr
+              th First Name
+              th Last Name
+              th Phone
+              th E-mail
+          tbody
+            tr(ng-repeat='c in contacts | orderBy:sort')
+              td {{c.fname}}
+              td {{c.lname}}
+              td {{c.phone}}
+              td {{c.email}}
