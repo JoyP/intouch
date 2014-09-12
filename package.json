@@ -17,7 +17,7 @@
     "blanket": {
       "pattern": "/server/"
     }
-  };
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/JoyP/intouch"
@@ -65,6 +65,6 @@
     "grunt-shell": "^1.1.1",
     "jshint-stylish": "^0.4.0",
     "mocha": "^1.21.4",
-    "mocha-lcov-reporter": "0.0.1",
+    "mocha-lcov-reporter": "0.0.1"
   }
 }
