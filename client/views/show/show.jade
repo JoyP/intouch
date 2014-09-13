@@ -43,8 +43,8 @@ h3 Show Page
         .col-xs-4
             h4.fa.fa-map-marker &nbsp; address
         .col-xs-4
-              a.thumbnail#profile(href='#', data-target='#uploadPhotos')
-                img(src='# {photo}')
+              a.thumbnail#profile(href='#', data-target='#uploadPhoto')
+                img(src='# {contact.photo}')
               h5.fa.fa-mobile &nbsp;  {{contact.phone}}
         .col-xs-4
           .row
@@ -54,7 +54,7 @@ h3 Show Page
           .row
             .col-xs-1
             .col-xs-6
-              h5.fa.fa-birthday-cake &nbsp; {{contact.birthday}}
+              h5.fa.fa-birthday-cake &nbsp; {{contact.bday}}
           .row
             .col-xs-1
             .col-xs-6
