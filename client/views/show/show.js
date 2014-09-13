@@ -6,6 +6,10 @@
 
     $scope.contact = {};
 
+    Contact.findById(this._id).then(function(response){
+      $scope.contact = response.data.contact;
+    });
+
     $scope.toggleContact = function(){
       $scope.showContact = !!!$scope.showContact;
     };
