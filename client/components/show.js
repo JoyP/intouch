@@ -5,6 +5,7 @@
   .factory('Show', ['$http', function($http){
 
     function findById(contact){
+//      console.log('contact in .factory findById>>>>>>>>>>', contact);
       return $http.get('/contacts/:id', contact);
     }
 
