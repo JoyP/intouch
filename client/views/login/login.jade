@@ -1,0 +1,30 @@
+h2 Login
+
+.row
+  .col-xs-4
+  .col-xs-4
+    form(role='form', novalidate, name='loginForm')
+      .form-group
+        label(for='email') Email
+        input.form-control#email(required, ng-minlength='0', ng-model='loginEmail', type='email', name='name', autofocus)
+      .form-group
+        label(for='password') Password
+        input.form-control#password(required, ng-minlength='0', ng-model='loginPassword', type='text', name='password')
+      .form-group
+        button#logButton.btn.btn-primary(type='submit' ng-click='loginUser()') Login
+  .col-xs-4
+.row
+  .col-xs-4
+  .col-xs-4
+    button#regButton.btn.btn-primary(ng-click='toggleRegister()') Not a member? Register Here!
+    form#toggleReg(role='form', novalidate, ng-hide='hideRegister', name='registerForm')
+      .form-group
+        label(for='email') Email
+        input.form-control#emailR(required, ng-minlength='0', ng-model='registerEmail', type='email', name='email')
+      .form-group
+        label(for='password') Password
+        input.form-control#passwordR(required, ng-minlength='0', ng-model='registerPassword', type='text', name='password')
+
+      button.btn.btn-primary(type='submit', ng-show='registerForm.$valid', ng-click='registerUser()') Get Started!
+  .col-xs-4
+

@@ -29,7 +29,6 @@ exports.update = function(req, res){
 
 exports.show = function(req, res){
   Contact.findById(req.params.id, function(err, contact){
-    console.log('CONTACT!!!!!!!', contact);
     res.send({contact:contact});
   });
 };

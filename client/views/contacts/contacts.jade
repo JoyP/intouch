@@ -2,7 +2,7 @@ h3 Contacts
 
 .row
   .col-xs-3
-    form(novalidate, name='newContact', role='form')
+    form(novalidate, name='newContact', role='form', ng-show='showAdd')
       h4 Add a Contact
       .form-group
         label(for='fname') First Name
@@ -26,8 +26,14 @@ h3 Contacts
         label(for='zip') Zip Code
         input.form-control#zip(name='zip', type='text', ng-model='contact.zip')
       .form-group
-        label(for='bday') bday
+        label(for='bday') Birthday
         input.form-control#bday(name='bday', type='date', ng-model='contact.bday')
+      .form-group
+        label(for='facebook') Facebook
+        input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook')
+      .form-group
+        label(for='twiter') Twitter
+        input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
       .form-group
         label(for='photo') Photo
         input.form-control#photo(name='photo', type='text', ng-model='contact.photo')
@@ -51,3 +57,8 @@ h3 Contacts
               td {{c.phone}}
               td {{c.email}}
               td {{c.bday}}
+              td: a(href='/#/contacts/{{c._id}}') Show Contact
+
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn.btn-success(ng-click='toggleAdd()') Add Contact
