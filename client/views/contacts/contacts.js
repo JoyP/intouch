@@ -11,6 +11,10 @@
       $scope.contacts = response.data.contacts;
     });
 
+    $scope.toggleAdd = function(){
+      $scope.showAdd = !!!$scope.showAdd;
+    };
+
     $scope.add = function(){
       Contact.create($scope.contact).then(function(response){
         $scope.contacts.push(response.data.contact);

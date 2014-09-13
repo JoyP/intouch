@@ -2,7 +2,7 @@ h3 Contacts
 
 .row
   .col-xs-3
-    form(novalidate, name='newContact', role='form')
+    form(novalidate, name='newContact', role='form', ng-show='showAdd')
       h4 Add a Contact
       .form-group
         label(for='fname') First Name
@@ -51,3 +51,8 @@ h3 Contacts
               td {{c.phone}}
               td {{c.email}}
               td {{c.bday}}
+              td: a(href='/contacts/{{c._id}}') Edit Contact
+
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn.btn-success(ng-click='toggleAdd()') Add Contact

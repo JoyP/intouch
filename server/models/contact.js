@@ -1,6 +1,7 @@
 'use strict';
 
-var Mongo  = require('mongodb');
+var Mongo  = require('mongodb'),
+    _      = require('underscore-contrib');
 
 function Contact(ownerId,o){
   this.ownerId  = Mongo.ObjectID();

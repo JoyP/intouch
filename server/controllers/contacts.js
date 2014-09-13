@@ -1,7 +1,6 @@
 'use strict';
 
 var Contact = require('../models/contact'),
-    User    = require('../models/user'),
     mp      = require('multiparty');
 
 exports.create = function(req, res){
@@ -30,8 +29,6 @@ exports.update = function(req, res){
 
 exports.show = function(req, res){
   Contact.findById(req.params.id, function(err, contact){
-    User.findById(contact.ownerId, function(err, owner){
-      res.send({contact:contact, owner:owner});
-    });
+    res.send({contact:contact});
   });
 };
