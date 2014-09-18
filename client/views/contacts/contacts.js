@@ -19,6 +19,7 @@
       Contact.create($scope.contact).then(function(response){
         $scope.contacts.push(response.data.contact);
         $scope.contact = {};
+        $scope.toggleAdd();
       });
     };
 
