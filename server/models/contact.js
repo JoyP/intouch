@@ -1,7 +1,6 @@
 'use strict';
 
-var Mongo  = require('mongodb'),
-    _      = require('underscore');
+var Mongo  = require('mongodb');
 
 function Contact(ownerId,o){
   this.ownerId  = Mongo.ObjectID();
@@ -31,11 +30,7 @@ Contact.all = function(cb){
 
 Contact.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  Contact.collection.findOne({_id:_id}, function(err, obj){
-    var contact = Object.create(Contact.prototype);
-    contact = _.extend(contact, obj);
-    cb(err, contact);
-  });
+  Contact.collection.findOne({_id:_id}, cb);
 };
 
 Contact.prototype.save = function(fields, cb){

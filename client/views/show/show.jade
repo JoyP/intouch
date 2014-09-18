@@ -47,18 +47,18 @@ h3 Show Page
       .panel-body
       .row
         .col-xs-12
-          h1 {{contact.fname}}
+          h1 {{contact.fname}} {{contact.lname}}
       .row
         .col-xs-4
           .row
-            .col-xs-1
-              h4.fa.fa-map-marker &nbsp; {{contact.street}} Street
+            .col-xs-2
+              h6.fa.fa-map-marker &nbsp; {{contact.street}}
           .row
-            .col-xs-1
-              h4 {{contact.state}} &nbsp; {{contact.zip}} zip
+            .col-xs-2
+              h4 {{contact.city}} &nbsp; {{contact.zip}}
         .col-xs-4
               a.thumbnail#profile(href='#', data-target='#uploadPhoto')
-                img(src='# {contact.photo}')
+                img(src='{{contact.photo}}')
               h5.fa.fa-mobile &nbsp;  {{contact.phone}}
         .col-xs-4
           .row
