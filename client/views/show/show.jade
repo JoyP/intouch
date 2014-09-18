@@ -69,12 +69,12 @@
           .row
             .col-xs-1
             .col-xs-11
-              h5.fa.fa-facebook: &nbsp; {{contact.facebook}}
+              h5.fa.fa-facebook: a(href='{{contact.facebook}}', target='_blank') &nbsp; {{contact.fname}}'s Facebook
 
           .row
             .col-xs-1
             .col-xs-11
-              h5.fa.fa-twitter &nbsp; {{contact.twitter}}
+              h5.fa.fa-twitter: a(href='{{contact.twitter}}', target='_blank') &nbsp; {{contact.fname}}'s Twitter
       .row
         .col-xs-12
           h1#phone {{contact.phone}}
