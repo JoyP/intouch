@@ -22,12 +22,6 @@
       });
     };
 
-    $scope.findContact = function(c){
-      Contact.findById(c._id).then(function(response){
-        $scope.contact = response.data.contact;
-      });
-    };
-
   }]);
 })();
 

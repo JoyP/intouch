@@ -5,7 +5,10 @@
   .factory('Show', ['$http', function($http){
 
     function findById(contact){
-      return $http.get('/contacts/:id', contact);
+      console.log('contact in .factory findById>>>>>>>>>>', contact);
+      this.contact = contact;
+      console.log('contact in .factory findById>>>>>>>>>>', contact);
+      return $http.get('/contacts/:id', this.contact);
     }
 
     function update(contact){
