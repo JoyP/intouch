@@ -1,6 +1,7 @@
 'use strict';
 
-var Mongo  = require('mongodb');
+var Mongo  = require('mongodb'),
+    _      = require('underscore');
 
 function Contact(ownerId,o){
   this.ownerId  = Mongo.ObjectID(ownerId);
@@ -30,19 +31,30 @@ Contact.all = function(cb){
 
 Contact.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  Contact.collection.findOne({_id:_id}, cb);
+  Contact.collection.findOne({_id:_id}, function(err, obj){
+    var contact = Object.create(Contact.prototype);
+    contact = _.extend(contact, obj);
+    cb(err, contact);
+  });
 };
 
 Contact.prototype.save = function(fields, cb){
   var properties = Object.keys(fields),
-      self       = this;
+    self       = this;
 
   properties.forEach(function(property){
-    self[property] = fields[property][0];
+    switch(property){
+      case 'bday':
+        self.bday = new Date(fields[property]);
+        break;
+      default:
+        self[property] = fields[property];
+    }
   });
 
   /*this.photo = uploadPhoto(file, '/img/' + this._id);*/
 
+  this._id = Mongo.ObjectID(this._id);
   Contact.collection.save(this, cb);
 };
 

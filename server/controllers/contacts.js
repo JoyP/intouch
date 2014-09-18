@@ -1,7 +1,7 @@
 'use strict';
 
-var Contact = require('../models/contact'),
-    mp      = require('multiparty');
+var Contact = require('../models/contact');
+ //   mp      = require('multiparty');
 
 exports.create = function(req, res){
 //  var form = new mp.Form();
@@ -19,12 +19,14 @@ exports.index = function(req, res){
 };
 
 exports.update = function(req, res){
-  var form = new mp.form();
-  form.parse(req, function(err, fields){
-    res.locals.contact.save(fields, function(){
-      res.send({fields:fields});
+  //var form = new mp.form();
+  //form.parse(req, function(err, fields){
+  Contact.findById(req.params.contactId, function(err, contact){
+    contact.save(req.body, function(err, contact){
+      res.send({contact:contact});
     });
   });
+//  });
 };
 
 exports.show = function(req, res){

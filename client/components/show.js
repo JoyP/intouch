@@ -8,8 +8,8 @@
       return $http.get('/contacts/' + contactId);
     }
 
-    function update(contactId){
-      return $http.post('/contacts/' + contactId);
+    function update(contact){
+      return $http.post('/contacts/' + contact._id, contact);
     }
 
     return {update:update, findById:findById};
