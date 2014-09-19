@@ -1,5 +1,3 @@
-h3 Show Page
-
 .row
   .col-xs-6
     form(novalidate, name='showForm', role='form', ng-show='showContact')
@@ -7,10 +5,10 @@ h3 Show Page
         .col-xs-6
           .form-group
             label(for='photo') Photo
-            input.form-control#photo(name='photo', type='text', ng-model='contact.photo', required)
+            input.form-control#photo(name='photo', type='text', ng-model='contact.photo')
           .form-group
             label(for='fname') First Name
-            input.form-control#name(name='fname', type='text', ng-model='contact.fname', required, autofocus)
+            input.form-control#name(name='fname', type='text', ng-model='contact.fname', autofocus)
           .form-group
             label(for='lname') Last Name
             input.form-control#name(name='lname', type='text', ng-model='contact.lname', required)
@@ -26,20 +24,20 @@ h3 Show Page
         .col-xs-6
           .form-group
             label(for='bday') Birthday
-            input.form-control#birthday(name='bday', type='text', ng-model='contact.bday', required)
+            input.form-control#birthday(name='bday', type='text', ng-model='contact.bday')
           .form-group
             label(for='phone') Phone Number
-            input.form-control#phone(name='phone', type='text', ng-model='contact.phone', required)
+            input.form-control#phone(name='phone', type='text', ng-model='contact.phone')
           .form-group
             label(for='email') Email Address
-            input.form-control#email(name='email', type='text', ng-model='contact.email', required)
+            input.form-control#email(name='email', type='text', ng-model='contact.email')
           .form-group
             label(for='facebook') Facebook
-            input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook', required)
+            input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook')
           .form-group
             label(for='twitter') Twitter
-            input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter', required)
-          button.btn.btn-success#update(ng-click='updateContact()') Update Contact
+            input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
+          button.btn#update(ng-click='updateContact()') Update Contact
 
   .col-xs-6
     .panel
@@ -51,32 +49,36 @@ h3 Show Page
         .col-xs-4
           .row
             .col-xs-12
-              h6.fa.fa-map-marker &nbsp; {{contact.street}}
-          .row
-            .col-xs-12
-              h6#city {{contact.city}} {{contact.zip}}
+              h5.address
+                br
+                {{contact.street}}
+                br
+                {{contact.city}} {{contact.zip}}
         .col-xs-4
               a.thumbnail#profile(href='#', data-target='#uploadPhoto')
                 img(src='{{contact.photo}}')
-              h5#phone.fa.fa-mobile &nbsp;  {{contact.phone}}
         .col-xs-4
           .row
             .col-xs-1
             .col-xs-11
-              h2.fa.fa-envelope-o &nbsp; {{contact.email}}
+              h2#email.fa.fa-envelope-o(ng-show='contact.email'): a(href='mailto:{{contact.email}}') &nbsp; {{contact.email}}
           .row
             .col-xs-1
             .col-xs-11
-              h5.fa.fa-birthday-cake &nbsp; {{contact.bday}}
+              h5.fa.fa-birthday-cake(ng-show='contact.bday') &nbsp; {{contact.bday | date:'mediumDate'}}
           .row
             .col-xs-1
             .col-xs-11
-              h5.fa.fa-facebook &nbsp; {{contact.facebook}}
+              h5.fa.fa-facebook(ng-show='contact.facebook'): a(href='{{contact.facebook}}', target='_blank') &nbsp; {{contact.fname}}'s Facebook
+
           .row
             .col-xs-1
             .col-xs-11
-              h5.fa.fa-twitter &nbsp; {{contact.twitter}}
+              h5.fa.fa-twitter(ng-show='contact.twitter'): a(href='{{contact.twitter}}', target='_blank') &nbsp; {{contact.fname}}'s Twitter
+      .row
+        .col-xs-12
+          h1#phone {{contact.phone}}
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn.btn-success(ng-click='toggleContact()') Edit Contact
+    button.btn(ng-click='toggleContact()') Edit Contact

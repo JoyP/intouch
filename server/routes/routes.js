@@ -28,6 +28,8 @@ module.exports = function(app, express){
   app.post('/contacts/:contactId', contacts.update);
   app.get('/contacts/:id', contacts.show);
   app.post('/login', user.loginUser);
+  app.post('/register', user.registerUser);
+  app.delete('/logout', user.logout);
 
   console.log('Express: Routes Loaded');
 };

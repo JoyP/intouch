@@ -1,13 +1,13 @@
 'use strict';
 
 var Mongo  = require('mongodb'),
-    _      = require('underscore');
+    _      = require('underscore'),
     fs     = require('fs'),
-             path  = require('path'),
+    path   = require('path');
 
 function Contact(fields, files){
   this._id      = Mongo.ObjectID();
-  this.ownerId  = req.userId;
+  this.ownerId  = res.locals.user._id; // will this work?  or do we need to pass in userId?
   this.fname    = fields.fname[0];
   this.lname    = fields.lname[0];
   this.phone    = fields.phone[0];
@@ -15,8 +15,8 @@ function Contact(fields, files){
   this.street   = fields.street[0];
   this.city     = fields.city[0];
   this.zip      = fields.zip[0];
-  this.bday     = fields.bday[0];
-  this.photo    = stashPhoto(files[0], this._id);
+  this.bday     = new Date(fields.bday[0]);
+  this.photo    = this.stashPhoto(files[0], this._id);
 }
 
 Object.defineProperty(Contact, 'collection',{
@@ -43,32 +43,39 @@ Contact.findById = function(id, cb){
 
 Contact.prototype.save = function(fields, cb){
   var properties = Object.keys(fields),
-      self       = this;
+    self       = this;
 
   properties.forEach(function(property){
-    self[property] = fields[property][0];
+    switch(property){
+      case 'bday':
+        self.bday = new Date(fields[property]);
+        break;
+      default:
+        self[property] = fields[property];
+    }
   });
 
 
+  this._id = Mongo.ObjectID(this._id);
   Contact.collection.save(this, cb);
 };
-
-module.exports = Contact;
 
 // HELPER FUNCTIONS
 
 Contact.prototype.stashPhoto = function(file){
 
-  if(!photo.size){return;}
+  if(!file.size){return;}
 
   var stashDir  = __dirname + '/../public/assets/img/',
-      ext       = path.extname(photo.path),
+      ext       = path.extname(file.path),
       name      = this._id + ext,
       stashPath = stashDir + name;
 
-  fs.renameSync(photo.path, stashPath);
-    return stashPath;
+  fs.renameSync(file.path, stashPath);
+  return stashPath;
 };
+
+module.exports = Contact;
 
 
 

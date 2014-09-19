@@ -5,10 +5,19 @@
   .factory('User', ['$http', function($http){
 
     function loginUser(user){
-      $http.post('/login', user);
+      return $http.post('/login', user);
     }
 
-    return {loginUser:loginUser};
+    function registerUser(user){
+      console.log('THEUSERyoyo----VVV', user);
+      return $http.post('/register', user);
+    }
+
+    function logout(){
+      return $http.delete('/logout');
+    }
+
+    return {registerUser:registerUser, loginUser:loginUser, logout:logout};
   }]);
 })();
 

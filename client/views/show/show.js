@@ -9,7 +9,7 @@
     };
 
     $scope.updateContact = function(){
-      Contact.update($routeParams.contactId).then(function(response){
+      Show.update($scope.contact).then(function(response){
         $scope.toggleContact();
       });
     };
