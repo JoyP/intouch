@@ -38,11 +38,14 @@ h3 Contacts
         label(for='photo') Photo
         input.form-control#photo(name='photo', type='file', ng-model='contact.photo')
         input(type='file', ng-file-select='onFileSelect($files)')
+
        button.btn.btn-primary(ng-click='add()') Add Contact
 
 .row
-  .col-xs-12
+  .col-xs-6
       .button(ng-file-select='onFileSelect($files)', data-multiple='true')
+  .col-xs-6
+      .image(style='background-image:url("{{contact.photo}}");')
 
 .row
   .col-cs-12

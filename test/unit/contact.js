@@ -14,7 +14,7 @@ describe('Contact', function(){
     });
   });
 
-  beforeEach(function(don){
+  beforeEach(function(done){
     cp.execFile(__dirname + '/../scripts/clean-db.sh', [db], {cwd:__dirname + '/../scripts'}, function(err, stdout, stderr){
       done();
     });
