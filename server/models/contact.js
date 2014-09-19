@@ -13,7 +13,7 @@ function Contact(ownerId,o){
   this.city     = o.city;
   this.zip      = o.zip;
   this.bday     = new Date(o.bday);
-  this.photo    = o.photo;
+  this.photo    = 'img/profile.png';
 }
 
 Object.defineProperty(Contact, 'collection',{
