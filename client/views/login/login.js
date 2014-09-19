@@ -4,6 +4,7 @@
   angular.module('intouch')
   .controller('LoginCtrl', ['$scope', '$location', 'User', function($scope, $location, User){
     $scope.hideRegister = true;
+    $scope.user = {};
 
     $scope.toggleRegister = function(){
       $scope.hideRegister = !!!$scope.hideRegister;
@@ -11,12 +12,12 @@
     };
 
     function success(response){
-      toastr.success('Successful login.');
+      toastr.success('Successful.');
       $location.path('/');
     }
 
     function failure(response){
-      toastr.error('Error during login, try again.');
+      toastr.error('Error, try again.');
       $scope.user = {};
     }
 
@@ -24,6 +25,12 @@
       User.loginUser($scope.user).then(success, failure);
     };
 
+
+    $scope.registerUser = function(){
+      console.log('YOYOYOYOYOYOYOYOYOYO-----', $scope.user);
+      debugger;
+      User.registerUser($scope.user).then(success, failure);
+    };
   }]);
 })();
 
