@@ -26,7 +26,7 @@ module.exports = function(app, express){
   app.get('/home', home.index);
   app.post('/contacts', contacts.create);
   app.get('/contacts', contacts.index);
-  app.post('/contacts/:id', contacts.update);
+  app.post('/contacts/:contactId', contacts.update);
   app.get('/contacts/:id', contacts.show);
   app.post('/login', passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login'}));
   app.get('/login', user.login);
