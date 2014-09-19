@@ -1,7 +1,7 @@
 h3 Contacts
 
 .row
-  .col-xs-3
+  .col-xs-6
     form(novalidate, name='newContact', role='form', ng-show='showAdd')
       h4 Add a Contact
       .form-group
@@ -35,17 +35,23 @@ h3 Contacts
         label(for='twiter') Twitter
         input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
       .form-group
-        label(for='photo') Photo
+        label(for='photo') Photo - form-control
         input.form-control#photo(name='photo', type='file', ng-model='contact.photo')
+      .form-group
+        label(for='photo') Photo - onFileSelect
         input(type='file', ng-file-select='onFileSelect($files)')
-
        button.btn.btn-primary(ng-click='add()') Add Contact
+  .col-xs-6
 
 .row
   .col-xs-6
       .button(ng-file-select='onFileSelect($files)', data-multiple='true')
   .col-xs-6
       .image(style='background-image:url("{{contact.photo}}");')
+
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn.btn-success(ng-click='toggleAdd()') Toggle Add 
 
 .row
   .col-cs-12
@@ -68,6 +74,3 @@ h3 Contacts
               td {{c.bday}}
               td: a(href='/#/contacts/{{c._id}}') Show Contact
 
-.row
-  .col-xs-3.col-xs-offset-9
-    button.btn.btn-success(ng-click='toggleAdd()') Add Contact

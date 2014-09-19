@@ -1,8 +1,6 @@
 (function(){
   'use strict';
 
-// var mp = require('multiparty');
-
   angular.module('intouch')
   .controller('ContactsCtrl', ['$scope', 'Contact', '$upload', function($scope, Contact, $upload){
     $scope.sort = 'lname';
@@ -18,15 +16,7 @@
     };
 
     $scope.add = function(){
-    // **** this is where the form data (fields + files) gets sent to server side
-      // this first block is from Chyld's Treasure Map project
-      var form = new mp.Form();
-      form.parse(req, function(err, fields, files){
-        Contact.create(fields, files, function(){
-          res.redirect('/treasures');
-        });
-      });
-
+      // **** this is where the form data (fields + files) gets sent to server side
       // this second block is original inTouch controller
       Contact.create($scope.contact).then(function(response){
         $scope.contacts.push(response.data.contact);

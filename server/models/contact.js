@@ -2,26 +2,29 @@
 
 var Mongo  = require('mongodb'),
     _      = require('underscore');
+    fs     = require('fs'),
+             path  = require('path'),
 
-function Contact(ownerId,o){
-  this.ownerId  = Mongo.ObjectID();
-  this.fname    = o.fname;
-  this.lname    = o.lname;
-  this.phone    = o.phone;
-  this.email    = o.email;
-  this.street   = o.street;
-  this.city     = o.city;
-  this.zip      = o.zip;
-  this.bday     = o.bday;
-  this.photo    = o.photo;
+function Contact(fields, files){
+  this._id      = Mongo.ObjectID();
+  this.ownerId  = req.userId;
+  this.fname    = fields.fname[0];
+  this.lname    = fields.lname[0];
+  this.phone    = fields.phone[0];
+  this.email    = fields.email[0];
+  this.street   = fields.street[0];
+  this.city     = fields.city[0];
+  this.zip      = fields.zip[0];
+  this.bday     = fields.bday[0];
+  this.photo    = stashPhoto(files[0], this._id);
 }
 
 Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(o,cb){
-  var c = new Contact(o);
+Contact.create = function(fields, files, cb){
+  var c = new Contact(fields, files);
   Contact.collection.save(c,cb);
 };
 
@@ -46,9 +49,28 @@ Contact.prototype.save = function(fields, cb){
     self[property] = fields[property][0];
   });
 
-  /*this.photo = uploadPhoto(file, '/img/' + this._id);*/
 
   Contact.collection.save(this, cb);
 };
 
 module.exports = Contact;
+
+// HELPER FUNCTIONS
+
+Contact.prototype.stashPhoto = function(file){
+
+  if(!photo.size){return;}
+
+  var stashDir  = __dirname + '/../public/assets/img/',
+      ext       = path.extname(photo.path),
+      name      = this._id + ext,
+      stashPath = stashDir + name;
+
+  fs.renameSync(photo.path, stashPath);
+    return stashPath;
+};
+
+
+
+
+

@@ -6,6 +6,7 @@
 
     function create(contact){
       return $http.post('/contacts', contact);
+      // return $http.post('/contacts/' + $scope.userId, contact);
     }
 
     function all(){
