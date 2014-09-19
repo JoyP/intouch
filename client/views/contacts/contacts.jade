@@ -56,7 +56,7 @@ h3 Contacts
               td {{c.lname}}
               td {{c.phone}}
               td {{c.email}}
-              td {{c.bday}}
+              td {{c.bday | date:'mediumDate'}}
               td: a(href='/#/contacts/{{c._id}}') Show Contact
 
 .row
