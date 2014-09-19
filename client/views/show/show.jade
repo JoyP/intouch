@@ -1,5 +1,3 @@
-h3 Show Page
-
 .row
   .col-xs-6
     form(novalidate, name='showForm', role='form', ng-show='showContact')
@@ -39,7 +37,7 @@ h3 Show Page
           .form-group
             label(for='twitter') Twitter
             input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter', required)
-          button.btn.btn-success#update(ng-click='updateContact()') Update Contact
+          button.btn#update(ng-click='updateContact()') Update Contact
 
   .col-xs-6
     .panel
@@ -51,19 +49,19 @@ h3 Show Page
         .col-xs-4
           .row
             .col-xs-12
-              h6.fa.fa-map-marker &nbsp; {{contact.street}}
-          .row
-            .col-xs-12
-              h6#city {{contact.city}} {{contact.zip}}
+              h5.address
+                br
+                {{contact.street}}
+                br
+                {{contact.city}} {{contact.zip}}
         .col-xs-4
               a.thumbnail#profile(href='#', data-target='#uploadPhoto')
                 img(src='{{contact.photo}}')
-              h5#phone.fa.fa-mobile &nbsp;  {{contact.phone}}
         .col-xs-4
           .row
             .col-xs-1
             .col-xs-11
-              h2.fa.fa-envelope-o &nbsp; {{contact.email}}
+              h2#email.fa.fa-envelope-o: a(href='mailto:{{contact.email}}') &nbsp; {{contact.email}}
           .row
             .col-xs-1
             .col-xs-11
@@ -71,12 +69,16 @@ h3 Show Page
           .row
             .col-xs-1
             .col-xs-11
-              h5.fa.fa-facebook &nbsp; {{contact.facebook}}
+              h5.fa.fa-facebook: &nbsp; {{contact.facebook}}
+
           .row
             .col-xs-1
             .col-xs-11
               h5.fa.fa-twitter &nbsp; {{contact.twitter}}
+      .row
+        .col-xs-12
+          h1#phone {{contact.phone}}
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn.btn-success(ng-click='toggleContact()') Edit Contact
+    button.btn(ng-click='toggleContact()') Edit Contact
