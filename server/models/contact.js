@@ -3,7 +3,7 @@
 var Mongo  = require('mongodb');
 
 function Contact(ownerId,o){
-  this.ownerId  = Mongo.ObjectID();
+  this.ownerId  = Mongo.ObjectID(ownerId);
   this.fname    = o.fname;
   this.lname    = o.lname;
   this.phone    = o.phone;
@@ -11,7 +11,7 @@ function Contact(ownerId,o){
   this.street   = o.street;
   this.city     = o.city;
   this.zip      = o.zip;
-  this.bday     = o.bday;
+  this.bday     = new Date(o.bday);
   this.photo    = o.photo;
 }
 
@@ -19,8 +19,8 @@ Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(o,cb){
-  var c = new Contact(o);
+Contact.create = function(user, o,cb){
+  var c = new Contact(user, o);
   Contact.collection.save(c,cb);
 };
 

@@ -16,6 +16,7 @@
     };
 
     $scope.add = function(){
+      console.log('$scope.contact in views/contact controller>>>>>', $scope.contact);
       Contact.create($scope.contact).then(function(response){
         $scope.contacts.push(response.data.contact);
         $scope.contact = {};

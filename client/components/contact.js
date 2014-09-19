@@ -5,6 +5,7 @@
   .factory('Contact', ['$http', function($http){
 
     function create(contact){
+      console.log('contact in contact factory>>>>>', contact);
       return $http.post('/contacts', contact);
     }
 
