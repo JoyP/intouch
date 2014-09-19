@@ -17,3 +17,21 @@ exports.loginUser = function(req, res){
     }
   });
 };
+
+exports.registerUser = function(req, res){
+  console.log('YOYOYOYOYOYOYOYOY-------', req.body);
+  User.registerUser(req.body, function(err, user){
+    if(user){
+      res.status(200).end();
+    }else{
+      res.status(400).end();
+    }
+  });
+};
+
+exports.logout = function(req, res){
+  req.session.destroy(function(){
+    res.setHeader('X-Authenticatd-User', 'anonymous');
+    res.status(200).end();
+  });
+};
