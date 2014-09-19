@@ -4,15 +4,12 @@
   angular.module('intouch')
   .factory('Show', ['$http', function($http){
 
-    function findById(contact){
-      console.log('contact in .factory findById>>>>>>>>>>', contact);
-      this.contact = contact;
-      console.log('contact in .factory findById>>>>>>>>>>', contact);
-      return $http.get('/contacts/:id', this.contact);
+    function findById(contactId){
+      return $http.get('/contacts/' + contactId);
     }
 
-    function update(contact){
-      return $http.post('/contacts/:id', contact);
+    function update(contactId){
+      return $http.post('/contacts/' + contactId);
     }
 
     return {update:update, findById:findById};
