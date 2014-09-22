@@ -6,7 +6,7 @@ var Contact = require('../models/contact'),
 exports.create = function(req, res){
   var o = parseMpForm(req);
 
-  Contact.create(o.fields, o.files, function(err, contact){
+  Contact.create(req.user._id, o.fields, o.files, function(err, contact){
     res.send({contact:contact});
   });
 };
@@ -20,8 +20,10 @@ exports.index = function(req, res){
 exports.update = function(req, res){
   var o = parseMpForm(req);
 
-  res.locals.contact.save(o.fields, o.files, contact, function(){
-    res.send({contact:contact});
+  Contact.findById(req.params.contactId, function(err, contact){
+    contact.save(o.fields, o.files, function(){
+      res.send({contact:contact});
+    });
   });
 };
 
@@ -33,10 +35,10 @@ exports.show = function(req, res){
 
 //  HELPER FUNCTION
 
-parseMpForm = function(req){
+function parseMpForm(req){
   var form = new mp.Form();
   form.parse(req, function(err, fields, files){
     return {err:err, fields:fields, files:files};
   });
-};
+}
 

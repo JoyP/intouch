@@ -5,9 +5,8 @@ var Mongo  = require('mongodb'),
     fs     = require('fs'),
     path   = require('path');
 
-function Contact(fields, files){
-  this._id      = Mongo.ObjectID();
-  this.ownerId  = res.locals.user._id; // will this work?  or do we need to pass in userId?
+function Contact(ownerId, fields, files){
+  this.ownerId  = Mongo.ObjectID(ownerId);
   this.fname    = fields.fname[0];
   this.lname    = fields.lname[0];
   this.phone    = fields.phone[0];
@@ -76,8 +75,4 @@ Contact.prototype.stashPhoto = function(file){
 };
 
 module.exports = Contact;
-
-
-
-
 
