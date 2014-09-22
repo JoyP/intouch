@@ -7,7 +7,7 @@ exports.create = function(req, res){
 //  var form = new mp.Form();
  // form.parse(req, function(err, fields, files){
  //   Contact.create(fields, files, function(err, contact){
-  Contact.create(req.user, req.body, function(err, contact){
+  Contact.create(req.user._id, req.body, function(err, contact){
     res.send({contact:contact});
   });
 };

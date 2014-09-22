@@ -2,7 +2,6 @@
 
 var bcrypt = require('bcrypt'),
     Mongo  = require('mongodb');
-    //_      = require('underscore-contrib');
 
 function User(o){
   this.email    = o.rEmail;
@@ -30,10 +29,8 @@ User.loginUser = function(o, cb){
 User.registerUser = function(o, cb){
   User.collection.findOne({email:o.rEmail}, function(err, user){
     if(user || o.rPassword.length < 3){return cb();}
-   // if(o.rPassword.length < 3){return cb();}
     o.rPassword = bcrypt.hashSync(o.rPassword, 10);
     o = new User(o);
-    console.log('this is o >>>> ',o);
     User.collection.save(o, cb);
   });
 };

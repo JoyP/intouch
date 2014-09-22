@@ -19,7 +19,6 @@ exports.loginUser = function(req, res){
 };
 
 exports.registerUser = function(req, res){
-  console.log('YOYOYOYOYOYOYOYOY-------', req.body);
   User.registerUser(req.body, function(err, user){
     if(user){
       res.status(200).end();
