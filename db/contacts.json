@@ -8,7 +8,7 @@
   "street"   : "101 Main St.",
   "city"     : "Nashville, TN",
   "zip"      : "37212",
-  "bday"     : ISODate("1945-12-25T05:00:00.000Z"),
+  "bday"     : "12/25/1945",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "phone"    : "615-777-8888"
 }
@@ -22,7 +22,7 @@
   "street"   : "101 Allston St.",
   "city"     : "Medford, MA",
   "zip"      : "02155",
-  "bday"     : ISODate("1959-01-01T05:00:00.000Z"),
+  "bday"     : "01/01/1959",
   "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",
   "phone"    : "615-555-6666"
 }
@@ -36,7 +36,7 @@
   "street"   : "PO BOX 35934",
   "city"     : "Syracuse, NY",
   "zip"      : "13235",
-  "bday"     : ISODate("1999-04-01T05:00:00.000Z"),
+  "bday"     : "04/01/1999",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "phone"    : "615-333-4444"
 }
@@ -50,7 +50,7 @@
   "street"   : "8305 Huron River Drive",
   "city"     : "Dexter, MI",
   "zip"      : "48104",
-  "bday"     : ISODate("1985-10-31T05:00:00.000Z"),
+  "bday"     : "10/31/2013",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "phone"    : "615-111-2222"
 }
