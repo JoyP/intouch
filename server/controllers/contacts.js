@@ -13,7 +13,7 @@ exports.create = function(req, res){
 };
 
 exports.index = function(req, res){
-  Contact.all(function(err, contacts){
+  Contact.findContacts(req.user._id, function(err, contacts){
     res.send({contacts:contacts});
   });
 };

@@ -29,6 +29,10 @@ Contact.all = function(cb){
   Contact.collection.find().toArray(cb);
 };
 
+Contact.findContacts = function(userId, cb){
+  Contact.collection.find({ownerId:userId}).toArray(cb);
+};
+
 Contact.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
   Contact.collection.findOne({_id:_id}, function(err, obj){
@@ -52,9 +56,8 @@ Contact.prototype.save = function(fields, cb){
     }
   });
 
-  /*this.photo = uploadPhoto(file, '/img/' + this._id);*/
-
-  this._id = Mongo.ObjectID(this._id);
+  this._id      = Mongo.ObjectID(this._id);
+  this.ownerId  = Mongo.ObjectID(this.ownerId);
   Contact.collection.save(this, cb);
 };
 

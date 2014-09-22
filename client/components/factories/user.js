@@ -9,7 +9,6 @@
     }
 
     function registerUser(user){
-      console.log('THEUSERyoyo----VVV', user);
       return $http.post('/register', user);
     }
 
