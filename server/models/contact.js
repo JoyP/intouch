@@ -12,7 +12,7 @@ function Contact(ownerId,o){
   this.street   = o.street;
   this.city     = o.city;
   this.zip      = o.zip;
-  this.bday     = new Date(o.bday);
+  this.bday     = (o.bday)? (new Date(o.bday)) : '';
   this.photo    = o.photo;
 }
 

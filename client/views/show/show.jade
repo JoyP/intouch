@@ -24,7 +24,7 @@
         .col-xs-6
           .form-group
             label(for='bday') Birthday
-            input.form-control#birthday(name='bday', type='text', ng-model='contact.bday')
+            input.form-control#birthday(name='bday', type='date', ng-model='contact.bday')
           .form-group
             label(for='phone') Phone Number
             input.form-control#phone(name='phone', type='text', ng-model='contact.phone')
@@ -81,4 +81,4 @@
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleContact()') Edit Contact
+    button.btn(ng-click='toggleContact()', ng-hide='showContact') Edit Contact
