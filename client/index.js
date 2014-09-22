@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('intouch', ['ngRoute', 'LocalForageModule'])
+  angular.module('intouch', ['ngRoute', 'LocalForageModule', 'angularFileUpload'])
   .config(['$routeProvider', '$httpProvider', '$localForageProvider', function($routeProvider, $httpProvider, $localForageProvider){
     $routeProvider
     .when('/', {templateUrl:'/views/home/home.html', controller:'HomeCtrl'})

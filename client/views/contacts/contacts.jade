@@ -35,9 +35,24 @@ h3 Contacts
         label(for='twiter') Twitter
         input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
       .form-group
-        label(for='photo') Photo
-        input.form-control#photo(name='photo', type='text', ng-model='contact.photo')
+        label(for='photo') Photo - form-control
+        input.form-control#photo(name='photo', type='file', ng-model='contact.photo')
+      .form-group
+        label(for='photo') Photo - onFileSelect
+        input(type='file', ng-file-select='onFileSelect($files)')
        button.btn.btn-primary(ng-click='add()') Add Contact
+  .col-xs-6
+
+.row
+  .col-cs-6
+    .button(ng-file-select='onFileSelect($files)', data-multiple='true')
+  .col-cs-6
+    .image(style='gackground-image:url("{{contact.photo}}");')
+
+.row
+  .col-cs-3.col-xs-offset-9
+    .button.tn.btn-success(ng-click='toggleAdd()') Toggle Add
+
 .row
   .col-cs-12
     .panel.panel-default
@@ -59,6 +74,3 @@ h3 Contacts
               td {{c.bday | date:'mediumDate'}}
               td: a(href='/#/contacts/{{c._id}}') Show Contact
 
-.row
-  .col-xs-3.col-xs-offset-9
-    button.btn.btn-success(ng-click='toggleAdd()') Add Contact

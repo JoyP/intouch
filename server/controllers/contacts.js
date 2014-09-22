@@ -1,13 +1,12 @@
 'use strict';
 
-var Contact = require('../models/contact');
- //   mp      = require('multiparty');
+var Contact = require('../models/contact'),
+    mp      = require('multiparty');
 
 exports.create = function(req, res){
-//  var form = new mp.Form();
- // form.parse(req, function(err, fields, files){
- //   Contact.create(fields, files, function(err, contact){
-  Contact.create(req.user._id, req.body, function(err, contact){
+  var o = parseMpForm(req);
+
+  Contact.create(req.user._id, o.fields, o.files, function(err, contact){
     res.send({contact:contact});
   });
 };
@@ -19,14 +18,13 @@ exports.index = function(req, res){
 };
 
 exports.update = function(req, res){
-  //var form = new mp.form();
-  //form.parse(req, function(err, fields){
+  var o = parseMpForm(req);
+
   Contact.findById(req.params.contactId, function(err, contact){
-    contact.save(req.body, function(err, contact){
+    contact.save(o.fields, o.files, function(err, contact){
       res.send({contact:contact});
     });
   });
-//  });
 };
 
 exports.show = function(req, res){
@@ -34,3 +32,12 @@ exports.show = function(req, res){
     res.send({contact:contact});
   });
 };
+
+// HELPER FUNCTION
+
+function parseMpForm(req){
+  var form = new mp.Form();
+  form.parse(req, function(err, fields, files){
+    return {err:err, fields:fields, files:files};
+  });
+}

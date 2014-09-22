@@ -1,28 +1,29 @@
 'use strict';
 
 var Mongo  = require('mongodb'),
-    _      = require('underscore');
+    _      = require('underscore'),
+    fs     = require('fs'),
+    path   = require('path');
 
-function Contact(ownerId,o){
+function Contact(ownerId, fields){
   this.ownerId  = Mongo.ObjectID(ownerId);
-  this.fname    = o.fname;
-  this.lname    = o.lname;
-  this.phone    = o.phone;
-  this.email    = o.email;
-  this.street   = o.street;
-  this.city     = o.city;
-  this.zip      = o.zip;
-  this.bday     = (o.bday)? (new Date(o.bday)) : '';
-  this.photo    = o.photo;
+  this.fname    = fields.fname[0];
+  this.lname    = fields.lname[0];
+  this.phone    = fields.phone[0];
+  this.email    = fields.email[0];
+  this.street   = fields.street[0];
+  this.city     = fields.city[0];
+  this.zip      = fields.zip[0];
+  this.bday     = (fields.bday[0]) ? (new Date(fields.bday[0])) : '';
 }
 
 Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(user, o,cb){
-  var c = new Contact(user, o);
-  Contact.collection.save(c,cb);
+Contact.create = function(user, fields, files, cb){ // we'll need to pass files in here to send to save
+  var c = new Contact(user, fields);
+  Contact.collection.save(c, files, cb); // seems awkward to include files here - why can't we pass photo into constructor?
 };
 
 Contact.all = function(cb){
@@ -38,7 +39,7 @@ Contact.findById = function(id, cb){
   });
 };
 
-Contact.prototype.save = function(fields, cb){
+Contact.prototype.save = function(fields, files, cb){
   var properties = Object.keys(fields),
     self       = this;
 
@@ -52,10 +53,25 @@ Contact.prototype.save = function(fields, cb){
     }
   });
 
-  /*this.photo = uploadPhoto(file, '/img/' + this._id);*/
+  this.photo = stashPhoto(files[0], this._id);
 
   this._id = Mongo.ObjectID(this._id);
   Contact.collection.save(this, cb);
 };
 
 module.exports = Contact;
+
+// HELPER FUNCTIONS
+
+function stashPhoto(file, contactId){
+
+  if(!file.size){return;}
+
+  var stashDir  = __dirname + '/../public/assets/img/',
+      ext       = path.extname(file.path),
+      name      = contactId + ext,
+      stashPath = stashDir + name;
+
+  fs.renameSync(file.path, stashPath);
+  return stashPath;
+}
