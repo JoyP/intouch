@@ -1,21 +1,23 @@
 'use strict';
 
 var Mongo  = require('mongodb'),
-    _      = require('underscore'),
-    fs     = require('fs'),
-    path   = require('path');
+ //  fs     = require('fs'),
+ //   path   = require('path');
+    _      = require('underscore');
 
-function Contact(ownerId, fields, files){
+function Contact(ownerId, contactInfo, files){
+  console.log('constructor>>>>>>>>>>>>> contactInfo', contactInfo);
   this.ownerId  = Mongo.ObjectID(ownerId);
-  this.fname    = fields.fname[0];
-  this.lname    = fields.lname[0];
-  this.phone    = fields.phone[0];
-  this.email    = fields.email[0];
-  this.street   = fields.street[0];
-  this.city     = fields.city[0];
-  this.zip      = fields.zip[0];
-  this.bday     = (fields.bday[0]) ? (new Date(fields.bday[0])) : '';
-  this.photo    = stashPhoto(files[0], this._id);
+  this.fname    = contactInfo.fname;
+  this.lname    = contactInfo.lname;
+  this.phone    = contactInfo.phone;
+  this.email    = contactInfo.email;
+  this.street   = contactInfo.street;
+  this.city     = contactInfo.city;
+  this.zip      = contactInfo.zip;
+  this.bday     = (contactInfo.bday) ? (new Date(contactInfo.bday)) : '';
+  // this.photo    = stashPhoto(files[0], this._id);
+  console.log('constructor>>>>>>>>>>>>> new contact', this);
 }
 
 Object.defineProperty(Contact, 'collection',{
@@ -24,6 +26,7 @@ Object.defineProperty(Contact, 'collection',{
 
 Contact.create = function(user, fields, files, cb){
   var c = new Contact(user, fields, files);
+  console.log('Contact.create>>>>>>>>>>>>>>>> c', c);
   Contact.collection.save(c,cb);
 };
 
@@ -74,7 +77,7 @@ Contact.prototype.save = function(fields, files, cb){
 module.exports = Contact;
 
 // HELPER FUNCTIONS
-
+/*
 function stashPhoto(file, contactId){
 
   if(!file.size){return;}
@@ -87,3 +90,4 @@ function stashPhoto(file, contactId){
   fs.renameSync(file.path, stashPath);
   return stashPath;
 }
+*/

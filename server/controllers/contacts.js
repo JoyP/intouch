@@ -8,12 +8,16 @@ exports.create = function(req, res){
   var form = new mp.Form();
 
   form.parse(req, function(err, fields, files){
-    console.log('>>>>>>>>>>>>>>> err', err);
-    console.log('>>>>>>>>>>>>>>> fields', fields);
-    console.log('>>>>>>>>>>>>>>> files', files);
+    console.log('exports.create>>>>>>>>>>>>>>> err', err);
+    console.log('exports.create>>>>>>>>>>>>>>> fields', fields);
+    console.log('exports.create>>>>>>>>>>>>>>> files', files);
 
-    Contact.create(req.user._id, fields, files, function(err, contact){
-      res.send({err:err, fields:fields, files:files});
+    var contactInfo2 = fields.contact[0],
+        contactInfo = JSON.parse(contactInfo2);
+    console.log('exports.create>>>>>>>>>>>>> contactInfo', contactInfo);
+
+    Contact.create(req.user._id, contactInfo, files, function(err, contact){
+      res.send({err:err, contact:contact});
     });
   });
 };
