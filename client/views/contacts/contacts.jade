@@ -55,22 +55,9 @@ h3 Contacts
 
 .row
   .col-cs-12
-    .panel.panel-default
-      .panel-body
-        table.table.table-bordered
-          thead
-            tr
-              th First Name
-              th Last Name
-              th Phone
-              th E-mail
-              th Birthday
-          tbody
-            tr(ng-repeat='c in contacts | orderBy:sort')
-              td {{c.fname}}
-              td {{c.lname}}
-              td {{c.phone}}
-              td {{c.email}}
-              td {{c.bday | date:'mediumDate'}}
-              td: a(href='/#/contacts/{{c._id}}') Show Contact
-
+    ul(ng-repeat='c in contacts')
+      .panel.panel-default.contact
+        .panel-body.contact
+          img.contact(href='/#/contacts/({{c._id}}', src='{{c.photo}}')
+          &nbsp
+          {{c.fname}}{{c.lname}}

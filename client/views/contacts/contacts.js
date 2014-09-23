@@ -7,7 +7,7 @@
     $scope.contact = {};
     $scope.contacts = [];
 
-    Contact.all().then(function(response){
+    Contact.findContacts().then(function(response){
       $scope.contacts = response.data.contacts;
     });
 

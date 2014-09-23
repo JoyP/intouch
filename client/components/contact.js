@@ -8,11 +8,11 @@
       return $http.post('/contacts', contact);
     }
 
-    function all(){
+    function findContacts(){
       return $http.get('/contacts');
     }
 
-    return {create:create, all:all};
+    return {create:create, findContacts:findContacts};
   }]);
 })();
 
