@@ -1,6 +1,7 @@
 'use strict';
 
-var Contact = require('../models/contact');
+var Contact = require('../models/contact'),
+    Mongo   = require('mongodb');
  //   mp      = require('multiparty');
 
 exports.create = function(req, res){
@@ -36,11 +37,8 @@ exports.show = function(req, res){
 };
 
 exports.deleteContact = function(req, res){
-  console.log('req.contactId in server controller>>>>>', req.contactId);
-  console.log('req.params.id in server controller>>>>>', req.params.id);
-  Contact.collection.remove({_id:req.params.id}, true, function(err, contact){
-    console.log('err in server controller>>>>>>>', err);
-    console.log('contact in server controller>>>>>>>', contact);
-    res.send({contact:contact});
+  var _id = Mongo.ObjectID(req.params.id);
+  Contact.collection.remove({_id:_id}, true, function(err, result){
+    res.send({result:result});
   });
 };
