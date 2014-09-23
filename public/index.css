@@ -1,0 +1,41 @@
+@import url(http://fonts.googleapis.com/css?family=Amatic+SC);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+body {
+  background-image: url('/img/bodybackground.jpg');
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#update {
+  margin-top: 20px;
+}
+.navbar-default .navbar-brand {
+  font-family: 'Amatic SC', cursive;
+  font-size: 55px;
+  color: #7786B2;
+  text-shadow: 1px 3px 1px #000;
+  font-weight: bolder;
+}
+.navbar-default .navbar-nav > li > a {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: medium;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  text-shadow: 1px 3px 3px rgba(0, 0, 0, 0.4);
+}
+.btn {
+  float: right;
+  background-color: lavender;
+  color: navy;
+  border-color: darkgray;
+}
+.btn:hover {
+  background-color: lavender;
+  color: navy;
+  transform: scale(1.1);
+}
+img.contact {
+  border-radius: 360px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}

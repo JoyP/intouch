@@ -5,7 +5,7 @@ var Mongo  = require('mongodb'),
     fs     = require('fs'),
     path   = require('path');
 
-function Contact(ownerId, fields){
+function Contact(ownerId, fields, files){
   this.ownerId  = Mongo.ObjectID(ownerId);
   this.fname    = fields.fname[0];
   this.lname    = fields.lname[0];
@@ -15,15 +15,16 @@ function Contact(ownerId, fields){
   this.city     = fields.city[0];
   this.zip      = fields.zip[0];
   this.bday     = (fields.bday[0]) ? (new Date(fields.bday[0])) : '';
+  this.photo    = stashPhoto(files[0], this._id);
 }
 
 Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(user, fields, files, cb){ // we'll need to pass files in here to send to save
-  var c = new Contact(user, fields);
-  Contact.collection.save(c, files, cb); // seems awkward to include files here - why can't we pass photo into constructor?
+Contact.create = function(user, fields, files, cb){
+  var c = new Contact(user, fields, files);
+  Contact.collection.save(c,cb);
 };
 
 Contact.all = function(cb){
@@ -56,10 +57,16 @@ Contact.prototype.save = function(fields, files, cb){
         self[property] = fields[property];
     }
   });
-
+/*
+<<<<<<< HEAD
   this.photo    = stashPhoto(files[0], this._id);
   this._id      = Mongo.ObjectID(this._id);
   this.ownerId  = Mongo.ObjectID(this.ownerId);
+
+=======
+  this._id = Mongo.ObjectID(this._id);
+>>>>>>> 66e84fe43a8f22723c530dcf39dd18a70a3f8f54
+*/
 
   Contact.collection.save(this, cb);
 };

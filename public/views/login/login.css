@@ -1,0 +1,12 @@
+h2 {
+  text-align: center;
+}
+#regButton {
+  margin-left: 20%;
+}
+#logButton {
+  margin-left: 42%;
+}
+input.ng-invalid {
+  border: 2px solid #EA4545;
+}

@@ -7,6 +7,9 @@ exports.create = function(req, res){
   var o = parseMpForm(req);
 
   Contact.create(req.user._id, o.fields, o.files, function(err, contact){
+    console.log('>>>>>>>>>>>>>>> req.user._id', req.user._id);
+    console.log('>>>>>>>>>>>>>>> o.fields', o.fields);
+    console.log('>>>>>>>>>>>>>>> o.files', o.files);
     res.send({contact:contact});
   });
 };

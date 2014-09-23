@@ -18,7 +18,7 @@
     "fontawesome": "~4.2.0",
     "underscore": "~1.7.0",
     "jquery": "~2.1.1",
-    "ng-file-upload": "1.6.5",
+    "ng-file-upload": "~1.6.7",
     "toastr": "~2.0.3",
     "angular-localforage": "~0.2.10"
   }
