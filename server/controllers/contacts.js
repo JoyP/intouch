@@ -1,7 +1,8 @@
 'use strict';
 
 var Contact = require('../models/contact'),
-    mp      = require('multiparty');
+    mp      = require('multiparty'),
+    Mongo   = require('mongodb');
 
 exports.create = function(req, res){
   var o = parseMpForm(req);
@@ -12,7 +13,7 @@ exports.create = function(req, res){
 };
 
 exports.index = function(req, res){
-  Contact.all(function(err, contacts){
+  Contact.findContacts(req.user._id, function(err, contacts){
     res.send({contacts:contacts});
   });
 };
@@ -33,6 +34,12 @@ exports.show = function(req, res){
   });
 };
 
+exports.deleteContact = function(req, res){
+  var _id = Mongo.ObjectID(req.params.id);
+  Contact.collection.remove({_id:_id}, true, function(err, result){
+    res.send({result:result});
+  });
+};
 //  HELPER FUNCTION
 
 function parseMpForm(req){

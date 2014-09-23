@@ -45,30 +45,17 @@ h3 Contacts
 .row
   .col-xs-6
       .button(ng-file-select='onFileSelect($files)', data-multiple='true')
-  .col-xs-6
       .image(style='background-image:url("{{contact.photo}}");')
-
-.row
-  .col-cs-12
-    .panel.panel-default
-      .panel-body
-        table.table.table-bordered
-          thead
-            tr
-              th First Name
-              th Last Name
-              th Phone
-              th E-mail
-              th Birthday
-          tbody
-            tr(ng-repeat='c in contacts | orderBy:sort')
-              td {{c.fname}}
-              td {{c.lname}}
-              td {{c.phone}}
-              td {{c.email}}
-              td {{c.bday | date:'mediumDate'}}
-              td: a(href='/#/contacts/{{c._id}}') Show Contact
 
 .row
   .col-xs-3.col-xs-offset-9
     button.btn.btn-success(ng-click='toggleAdd()') Add Contact
+
+.row
+  .col-cs-12
+    ul(ng-repeat='c in contacts')
+      .panel.panel-default.contact: a(href='/#/contacts/{{c._id}}')
+        .panel-body.contact
+          img.contact(src='{{c.photo}}')
+          &nbsp
+          {{c.fname}}{{c.lname}}

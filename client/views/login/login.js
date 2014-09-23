@@ -27,8 +27,6 @@
 
 
     $scope.registerUser = function(){
-      console.log('YOYOYOYOYOYOYOYOYOYO-----', $scope.user);
-      debugger;
       User.registerUser($scope.user).then(success, failure);
     };
   }]);

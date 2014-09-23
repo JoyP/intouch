@@ -1,6 +1,6 @@
 {
   "_id"      : {"$oid":"100000000000000000000001"},
-  "ownerID"  : {"$oid":"000000000000000000000001"},
+  "ownerId"  : {"$oid":"000000000000000000000001"},
   "fname"    : "Bob",
   "lname"    : "Felix",
   "photo"    : "http://greatcatsoftheworld.files.wordpress.com/2012/04/beautiful-bobcat.jpg",
@@ -8,13 +8,13 @@
   "street"   : "101 Main St.",
   "city"     : "Nashville, TN",
   "zip"      : "37212",
-  "bday"     : "12/25/1945",
+  "bday"     : "1945-12-25T05:00:00.000Z",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "phone"    : "615-777-8888"
 }
 {
   "_id"      : {"$oid":"100000000000000000000002"},
-  "ownerID"  : {"$oid":"000000000000000000000001"},
+  "ownerId"  : {"$oid":"000000000000000000000001"},
   "fname"    : "Sue",
   "lname"    : "Porque",
   "photo"    : "http://sites.duke.edu/theconnection/files/2012/05/sow1.jpg",
@@ -22,13 +22,13 @@
   "street"   : "101 Allston St.",
   "city"     : "Medford, MA",
   "zip"      : "02155",
-  "bday"     : "01/01/1959",
+  "bday"     : "1959-01-01T05:00:00.000Z",
   "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",
   "phone"    : "615-555-6666"
 }
 {
   "_id"      : {"$oid":"100000000000000000000003"},
-  "ownerID"  : {"$oid":"000000000000000000000002"},
+  "ownerId"  : {"$oid":"000000000000000000000002"},
   "fname"    : "Jack",
   "lname"    : "Hopper",
   "photo"    : "http://www.astronomy-images.com/day-images/California/Marin-Sonoma/rabbit-3D.KI8Q4605.jpg",
@@ -36,13 +36,13 @@
   "street"   : "PO BOX 35934",
   "city"     : "Syracuse, NY",
   "zip"      : "13235",
-  "bday"     : "04/01/1999",
+  "bday"     : "1999-04-01T05:00:00.000Z",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "phone"    : "615-333-4444"
 }
 {
   "_id"      : {"$oid":"100000000000000000000004"},
-  "ownerID"  : {"$oid":"000000000000000000000003"},
+  "ownerId"  : {"$oid":"000000000000000000000003"},
   "fname"    : "Iris",
   "lname"    : "Sophia`",
   "photo"    : "http://www.oregonzoo.org/sites/default/files/gallery/images/H_orig_western_schreech_owl_eye1_gal.jpg",
@@ -50,7 +50,7 @@
   "street"   : "8305 Huron River Drive",
   "city"     : "Dexter, MI",
   "zip"      : "48104",
-  "bday"     : "10/31/2013",
+  "bday"     : "2013-10-31T05:00:00.000Z",
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2",
   "phone"    : "615-111-2222"
 }
