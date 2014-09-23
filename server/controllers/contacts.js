@@ -34,3 +34,12 @@ exports.show = function(req, res){
     res.send({contact:contact});
   });
 };
+
+exports.deleteContact = function(req, res){
+  console.log('req.params.id in server controller>>>>>', req.params.id);
+  Contact.collection.remove({_id:req.params.id}, true, function(err, contact){
+    console.log('err in server controller>>>>>>>', err);
+    console.log('contact in server controller>>>>>>>', contact);
+    res.send({contact:contact});
+  });
+};

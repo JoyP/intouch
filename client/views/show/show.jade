@@ -82,3 +82,4 @@
 .row
   .col-xs-3.col-xs-offset-9
     button.btn(ng-click='toggleContact()', ng-hide='showContact') Edit Contact
+    button.btn.btn-danger(ng-click='deleteContact(contact._id)'): a(href='/#/contacts') Delete Contact

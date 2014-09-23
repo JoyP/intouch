@@ -13,8 +13,15 @@
         $scope.toggleContact();
       });
     };
+
     Show.findById($routeParams.contactId).then(function(response){
       $scope.contact = response.data.contact;
     });
+
+    $scope.deleteContact = function(contactId){
+      Show.deleteContact(contactId).then(function(response){
+      });
+    };
+
   }]);
 })();

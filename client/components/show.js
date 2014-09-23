@@ -12,6 +12,10 @@
       return $http.post('/contacts/' + contact._id, contact);
     }
 
-    return {update:update, findById:findById};
+    function deleteContact(contactId){
+      return $http.post('/contacts', contactId);
+    }
+
+    return {update:update, findById:findById, deleteContact:deleteContact};
   }]);
 })();
