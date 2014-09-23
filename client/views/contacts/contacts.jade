@@ -35,17 +35,17 @@ h3 Contacts
         label(for='twiter') Twitter
         input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
       .form-group
-        label(for='photo') Photo - form-control
-        input.form-control#photo(name='photo', type='file', ng-model='contact.photo')
+        // label(for='photo') Photo - form-control
+        // input.form-control#photo(name='photo', type='file', ng-model='contact.photo')
       .form-group
         label(for='photo') Photo - onFileSelect
-        input(type='file', ng-file-select='onFileSelect($files)')
+        input(type='file', ng-file-select='onFileSelect($files)', ng-model='contact.photo')
        button.btn.btn-primary(ng-click='add()') Add Contact
   .col-xs-9
 
 .row
   .col-cs-6
-    .button(ng-file-select='onFileSelect($files)', data-multiple='true')
+ //   .button(ng-file-select='onFileSelect($files)', data-multiple='true')
   .col-cs-6
     .image(style='background-image:url("{{contact.photo}}");')
 
@@ -56,8 +56,8 @@ h3 Contacts
 .row
   .col-cs-12
     ul(ng-repeat='c in contacts')
-      .panel.panel-default.contact
+      .panel.panel-default.contact: a(href='/#/contacts/{{c._id}}')
         .panel-body.contact
-          img.contact(href='/#/contacts/({{c._id}}', src='{{c.photo}}')
+          img.contact(src='{{c.photo}}')
           &nbsp
           {{c.fname}}{{c.lname}}

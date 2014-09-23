@@ -12,6 +12,11 @@
       return $http.post('/contacts/' + contact._id, contact);
     }
 
-    return {update:update, findById:findById};
+    function deleteContact(contactId){
+      console.log('contactId in show factory>>>>>', contactId);
+      return $http.delete('/contacts/'+ contactId);
+    }
+
+    return {update:update, findById:findById, deleteContact:deleteContact};
   }]);
 })();

@@ -26,6 +26,7 @@
     };
 
     $scope.onFileSelect = function($files){
+      debugger;
       for (var i = 0; i < $files.length; i++) {
         var file = $files[i];
         $scope.upload = $upload.upload({
@@ -33,7 +34,7 @@
           method: 'POST',
           //headers: {'header-key': 'header-value'},
           withCredentials: true,
-          data: {myObj: $scope.myModelObj},
+          data: {contact: $scope.contact},
           file: file,
           fileName: 'photo.jpg' // or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
           // customize file formData name ('Content-Disposition'), server side file variable name.

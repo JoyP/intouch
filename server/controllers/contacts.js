@@ -1,16 +1,20 @@
 'use strict';
 
 var Contact = require('../models/contact'),
-    mp      = require('multiparty');
+    mp      = require('multiparty'),
+    Mongo   = require('mongodb');
 
 exports.create = function(req, res){
-  var o = parseMpForm(req);
+  var form = new mp.Form();
 
-  Contact.create(req.user._id, o.fields, o.files, function(err, contact){
-    console.log('>>>>>>>>>>>>>>> req.user._id', req.user._id);
-    console.log('>>>>>>>>>>>>>>> o.fields', o.fields);
-    console.log('>>>>>>>>>>>>>>> o.files', o.files);
-    res.send({contact:contact});
+  form.parse(req, function(err, fields, files){
+    console.log('>>>>>>>>>>>>>>> err', err);
+    console.log('>>>>>>>>>>>>>>> fields', fields);
+    console.log('>>>>>>>>>>>>>>> files', files);
+
+    Contact.create(req.user._id, fields, files, function(err, contact){
+      res.send({err:err, fields:fields, files:files});
+    });
   });
 };
 
@@ -36,11 +40,20 @@ exports.show = function(req, res){
   });
 };
 
-// HELPER FUNCTION
+exports.deleteContact = function(req, res){
+  var _id = Mongo.ObjectID(req.params.id);
+  Contact.collection.remove({_id:_id}, true, function(err, result){
+    res.send({result:result});
+  });
+};
 
+//  HELPER FUNCTION
+// this should go away after update is revised to not need it
+// may refactor with exports.create
 function parseMpForm(req){
   var form = new mp.Form();
   form.parse(req, function(err, fields, files){
     return {err:err, fields:fields, files:files};
   });
 }
+
