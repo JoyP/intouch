@@ -26,7 +26,7 @@ module.exports = function(app, express){
   app.post('/contacts', contacts.create);
   app.get('/contacts', contacts.index);
   app.post('/contacts/:contactId', contacts.update);
-  app.post('/contacts/delete', contacts.deleteContact);
+  app.delete('/contacts/:id', contacts.deleteContact);
   app.get('/contacts/:id', contacts.show);
   app.post('/login', user.loginUser);
   app.post('/register', user.registerUser);
