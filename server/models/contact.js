@@ -28,9 +28,6 @@ Object.defineProperty(Contact, 'collection',{
 
 Contact.create = function(user, contactInfo, files, cb){
   var c = new Contact(user, contactInfo, files);
-  console.log('Contact.create>>>>>>>>>>>>>>>> c', c);
-  console.log('Contact.create>>>>>>>>>>>>>>>> c.photo[1]', c.photo[1]);
-  console.log('Contact.create>>>>>>>>>>>>>>>> c.photo[2]', c.photo[2]);
   Contact.collection.save(c,cb);
 };
 
@@ -84,17 +81,15 @@ module.exports = Contact;
 
 function stashPhoto(file, contactId){
 
-  // console.log('stashPhoto>>>>>>>>>>>>>>>>> file', file);
   console.log('');
   var tempPath = file.file[0].path;
   tempPath = tempPath.toString();
-  // console.log('stashPhoto>>>>>>>>>>>>>>>>> tempPath', tempPath);
 
   // if(!file.size){return;}
 
   console.log('');
-  var relDir  = '/public/img/',
-      absDir  = __dirname + '/../..' + relDir;
+  var relDir  = '/img/',
+      absDir  = __dirname + '/../../public' + relDir;
   console.log('relDir>>>>>>>>>>>>>>>>> relDir', relDir);
   console.log('absDir>>>>>>>>>>>>>>>>> absDir', absDir);
 
