@@ -6,7 +6,6 @@ var Contact = require('../models/contact'),
 
 exports.create = function(req, res){
   var form = new mp.Form();
-
   form.parse(req, function(err, fields, files){
 
     var contactInfo2 = fields.contact[0],

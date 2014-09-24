@@ -6,8 +6,6 @@ var Mongo  = require('mongodb'),
     _      = require('underscore');
 
 function Contact(ownerId, contactInfo, files){
-  console.log('constructor>>>>>>>>>>>>> contactInfo', contactInfo);
-  console.log('constructor>>>>>>>>>>>>> files', files);
   this._id      = new Mongo.ObjectID();
   this.ownerId  = Mongo.ObjectID(ownerId);
   this.fname    = contactInfo.fname;
@@ -19,7 +17,6 @@ function Contact(ownerId, contactInfo, files){
   this.zip      = contactInfo.zip;
   this.bday     = (contactInfo.bday) ? (new Date(contactInfo.bday)) : '';
   this.photo    = stashPhoto(files, this._id);
-  console.log('constructor>>>>>>>>>>>>> new contact photo', this.photo[0]);
 }
 
 Object.defineProperty(Contact, 'collection',{
@@ -90,8 +87,6 @@ function stashPhoto(file, contactId){
   console.log('');
   var relDir  = '/img/',
       absDir  = __dirname + '/../../public' + relDir;
-  console.log('relDir>>>>>>>>>>>>>>>>> relDir', relDir);
-  console.log('absDir>>>>>>>>>>>>>>>>> absDir', absDir);
 
   console.log('');
   var ext       = path.extname(tempPath);
@@ -100,9 +95,6 @@ function stashPhoto(file, contactId){
   var name      = contactId + ext,
       absPath = absDir + name,
       relPath = relDir + name;
-  console.log('stashPhoto>>>>>>>>>>>>>>>>> name', name);
-  console.log('stashPhoto>>>>>>>>>>>>>>>>> absPath', absPath);
-  console.log('stashPhoto>>>>>>>>>>>>>>>>> relPath', relPath);
 
   fs.renameSync(tempPath, absPath);
   return relPath;
