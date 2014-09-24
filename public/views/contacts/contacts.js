@@ -16,8 +16,9 @@
     };
 
     $scope.add = function(){
-      Contact.create($scope.contact).then(function(response){
       // **** this is where the form data (fields + files) gets sent to server side
+      Contact.create($scope.contact).then(function(response){
+
         $scope.contacts.push(response.data.contact);
         $scope.contact = {};
         $scope.toggleAdd();
@@ -25,7 +26,6 @@
     };
 
     $scope.onFileSelect = function($files){
-      debugger;
       var file = $files[0];
       $scope.upload = $upload.upload({
         url: '/contacts',

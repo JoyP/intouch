@@ -1,12 +1,14 @@
 'use strict';
 
 var Mongo  = require('mongodb'),
- //  fs     = require('fs'),
- //   path   = require('path');
+    fs     = require('fs'),
+    path   = require('path'),
     _      = require('underscore');
 
 function Contact(ownerId, contactInfo, files){
   console.log('constructor>>>>>>>>>>>>> contactInfo', contactInfo);
+  console.log('constructor>>>>>>>>>>>>> files', files);
+  this._id      = new Mongo.ObjectID();
   this.ownerId  = Mongo.ObjectID(ownerId);
   this.fname    = contactInfo.fname;
   this.lname    = contactInfo.lname;
@@ -16,17 +18,19 @@ function Contact(ownerId, contactInfo, files){
   this.city     = contactInfo.city;
   this.zip      = contactInfo.zip;
   this.bday     = (contactInfo.bday) ? (new Date(contactInfo.bday)) : '';
-  // this.photo    = stashPhoto(files[0], this._id);
-  console.log('constructor>>>>>>>>>>>>> new contact', this);
+  this.photo    = stashPhoto(files, this._id);
+  console.log('constructor>>>>>>>>>>>>> new contact photo', this.photo[0]);
 }
 
 Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(user, fields, files, cb){
-  var c = new Contact(user, fields, files);
+Contact.create = function(user, contactInfo, files, cb){
+  var c = new Contact(user, contactInfo, files);
   console.log('Contact.create>>>>>>>>>>>>>>>> c', c);
+  console.log('Contact.create>>>>>>>>>>>>>>>> c.photo[1]', c.photo[1]);
+  console.log('Contact.create>>>>>>>>>>>>>>>> c.photo[2]', c.photo[2]);
   Contact.collection.save(c,cb);
 };
 
@@ -77,17 +81,35 @@ Contact.prototype.save = function(fields, files, cb){
 module.exports = Contact;
 
 // HELPER FUNCTIONS
-/*
+
 function stashPhoto(file, contactId){
 
-  if(!file.size){return;}
+  // console.log('stashPhoto>>>>>>>>>>>>>>>>> file', file);
+  console.log('');
+  var tempPath = file.file[0].path;
+  tempPath = tempPath.toString();
+  // console.log('stashPhoto>>>>>>>>>>>>>>>>> tempPath', tempPath);
 
-  var stashDir  = __dirname + '/../public/assets/img/',
-      ext       = path.extname(file.path),
-      name      = contactId + ext,
-      stashPath = stashDir + name;
+  // if(!file.size){return;}
 
-  fs.renameSync(file.path, stashPath);
-  return stashPath;
+  console.log('');
+  var relDir  = '/public/img/',
+      absDir  = __dirname + '/../..' + relDir;
+  console.log('relDir>>>>>>>>>>>>>>>>> relDir', relDir);
+  console.log('absDir>>>>>>>>>>>>>>>>> absDir', absDir);
+
+  console.log('');
+  var ext       = path.extname(tempPath);
+
+  console.log('');
+  var name      = contactId + ext,
+      absPath = absDir + name,
+      relPath = relDir + name;
+  console.log('stashPhoto>>>>>>>>>>>>>>>>> name', name);
+  console.log('stashPhoto>>>>>>>>>>>>>>>>> absPath', absPath);
+  console.log('stashPhoto>>>>>>>>>>>>>>>>> relPath', relPath);
+
+  fs.renameSync(tempPath, absPath);
+  return relPath;
 }
-*/
+
