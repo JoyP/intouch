@@ -37,10 +37,8 @@ h3 Contacts
       .form-group
         label(for='photo') Photo - onFileSelect
         input(type='file', ng-file-select='onFileSelect($files)', ng-model='contact.photo')
-        // .form-group
-        //  label(for='photo') Photo - form-control
-        //  input.form-control#photo(name='photo', type='file', ng-model='contact.photo')
-        button.btn.btn-primary(ng-click='add()') Add Contact
+      .form-group
+        button.btn.btn-primary(ng-show='newContact.$valid', ng-click='add()') Add Contact
   .col-xs-9
 
 .row

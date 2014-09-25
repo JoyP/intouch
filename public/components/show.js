@@ -2,20 +2,28 @@
   'use strict';
 
   angular.module('intouch')
-  .factory('Show', ['$http', function($http){
+  .factory('Show', ['$http', '$upload',  function($http, $upload){
 
     function findById(contactId){
       return $http.get('/contacts/' + contactId);
-    }
-
-    function update(contact){
-      return $http.post('/contacts/' + contact._id, contact);
     }
 
     function deleteContact(contactId){
       return $http.delete('/contacts/'+ contactId);
     }
 
-    return {update:update, findById:findById, deleteContact:deleteContact};
+    function updateContact(contact, files){
+      var file = files[0];
+      return $upload.upload({
+        url: '/contacts/:id',
+        method: 'POST',
+        withCredentials: true,
+        data: {contact: contact},
+        file: file,
+        fileName: 'photo.jpg'
+      });
+    }
+
+    return {updateContact:updateContact, findById:findById, deleteContact:deleteContact};
   }]);
 })();

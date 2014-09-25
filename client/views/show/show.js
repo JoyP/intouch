@@ -8,11 +8,15 @@
       $scope.showContact = !!!$scope.showContact;
     };
 
-    $scope.updateContact = function(){
-      Show.update($scope.contact).then(function(response){
+    $scope.update = function(){
+      Show.updateContact($scope.contact, $scope.files).then(function(response){
+        $scope.contact = response.data.contact;
         $scope.toggleContact();
-        $location.path('/contacts');
       });
+    };
+
+    $scope.onFileSelect = function($files){
+      $scope.files = $files;
     };
 
     Show.findById($routeParams.contactId).then(function(response){

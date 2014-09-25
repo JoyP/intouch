@@ -4,10 +4,6 @@
   angular.module('intouch')
   .factory('Contact', ['$http', '$upload', function($http, $upload){
 
-    function create(contact){
-      return $http.post('/contacts', contact);
-    }
-
     function findContacts(){
       return $http.get('/contacts');
     }
@@ -36,7 +32,7 @@
 //      cb(contact);
     }
 
-    return {create:create, findContacts:findContacts, addContactWithFiles:addContactWithFiles};
+    return {findContacts:findContacts, addContactWithFiles:addContactWithFiles};
   }]);
 })();
 

@@ -1,17 +1,20 @@
 .row
   .col-xs-6
-    form(novalidate, name='showForm', role='form', ng-show='showContact')
+    form(novalidate, name='updateForm', role='form', ng-show='showContact')
       .row
         .col-xs-6
           .form-group
-            label(for='photo') Photo
-            input.form-control#photo(name='photo', type='text', ng-model='contact.photo')
-          .form-group
             label(for='fname') First Name
-            input.form-control#name(name='fname', type='text', ng-model='contact.fname', autofocus)
+            input.form-control#fname(name='fname', type='text', ng-model='contact.fname', autofocus)
           .form-group
             label(for='lname') Last Name
-            input.form-control#name(name='lname', type='text', ng-model='contact.lname', required)
+            input.form-control#lname(name='lname', type='text', ng-model='contact.lname', required)
+          .form-group
+            label(for='phone') Phone Number
+            input.form-control#phone(name='phone', type='tel', ng-model='contact.phone')
+          .form-group
+            label(for='email') E-mail
+            input.form-control#email(name='email', type='email', ng-model='contact.email')
           .form-group
             label(for='street') Street Address
             input.form-control#street(name='street', type='text', ng-model='contact.street')
@@ -21,23 +24,20 @@
           .form-group
             label(for='zip') Zip Code
             input.form-control#zip(name='zip', type='text', ng-model='contact.zip')
-        .col-xs-6
           .form-group
             label(for='bday') Birthday
-            input.form-control#birthday(name='bday', type='date', ng-model='contact.bday')
-          .form-group
-            label(for='phone') Phone Number
-            input.form-control#phone(name='phone', type='text', ng-model='contact.phone')
-          .form-group
-            label(for='email') Email Address
-            input.form-control#email(name='email', type='text', ng-model='contact.email')
+            input.form-control#bday(name='bday', type='date', ng-model='contact.bday')
           .form-group
             label(for='facebook') Facebook
             input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook')
           .form-group
-            label(for='twitter') Twitter
+            label(for='twiter') Twitter
             input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
-          button.btn#update(ng-click='updateContact()') Update Contact
+          .form-group
+            label(for='photo') Photo - onFileSelect
+            input(type='file', ng-file-select='onFileSelect($files)', ng-model='contact.photo')
+          .form-group
+            button.btn#update(ng-click='update()') Update Contact
 
   .col-xs-6
     .panel

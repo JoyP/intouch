@@ -46,14 +46,14 @@ Contact.findById = function(id, cb){
   });
 };
 
-Contact.prototype.save = function(fields, files, cb){
+Contact.prototype.save = function(fields, file, cb){
   var properties = Object.keys(fields),
     self       = this;
 
   properties.forEach(function(property){
     switch(property){
       case 'photo':
-        self.photo = stashPhoto(files[0], self._id);
+        self.photo = stashPhoto(file, self._id);
         break;
       case 'bday':
         self.bday = new Date(fields[property]);
@@ -73,11 +73,13 @@ module.exports = Contact;
 
 // HELPER FUNCTION
 
-function stashPhoto(file, contactId){
+function stashPhoto(files, contactId){
 
-  var tempPath = file.file[0].path;
+  console.log('files in stashPhoto>>>>>>>>>', files);
+  console.log('files.file[0] in stashPhoto>>>>>>>', files.file[0]);
+  var tempPath = files.file[0].path;
 
-  if(!file.file[0].size){return;}
+  if(!files.file[0].size){return;}
 
   var relDir  = '/img/',
       absDir  = __dirname + '/../../public' + relDir,
