@@ -11,6 +11,7 @@
     $scope.updateContact = function(){
       Show.update($scope.contact).then(function(response){
         $scope.toggleContact();
+        $location.path('/contacts');
       });
     };
 
@@ -19,7 +20,6 @@
     });
 
     $scope.deleteContact = function(contactId){
-      console.log('contactId in show controller>>>>>', contactId);
       Show.deleteContact(contactId).then(function(response){
         $location.path('/contacts');
       });

@@ -13,7 +13,6 @@
     }
 
     function deleteContact(contactId){
-      console.log('contactId in show factory>>>>>', contactId);
       return $http.delete('/contacts/'+ contactId);
     }
 

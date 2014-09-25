@@ -6,13 +6,18 @@ var Contact = require('../models/contact'),
 
 exports.create = function(req, res){
   var form = new mp.Form();
-  form.parse(req, function(err, fields, files){
-
+  form.parse(req, function(err, fields, file){
     var contactInfo2 = fields.contact[0],
         contactInfo = JSON.parse(contactInfo2);
 
-    Contact.create(req.user._id, contactInfo, files, function(err, contact){
-      res.send({err:err, contact:contact});
+    Contact.create(req.user._id, contactInfo, file, function(err, success, contact){
+      console.log('err before it is sent back to Angular>>>>', err);
+      console.log('success before it is sent back to Angular>>>>', success);
+      console.log('contact after creation in exports.create>>>>', contact);
+      Contact.findById(contact.upserted[0]._id, function(err, contact){
+        console.log('contact before it is sent back to Angular>>>>', contact);
+        res.send({err:err, contact:contact});
+      });
     });
   });
 };
@@ -51,7 +56,7 @@ exports.deleteContact = function(req, res){
 // may refactor with exports.create
 function parseMpForm(req){
   var form = new mp.Form();
-  form.parse(req, function(err, fields, files){
-    return {err:err, fields:fields, files:files};
+  form.parse(req, function(err, fields, file){
+    return {err:err, fields:fields, file:file};
   });
 }

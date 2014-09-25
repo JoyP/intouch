@@ -23,9 +23,10 @@ Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(user, contactInfo, files, cb){
-  var c = new Contact(user, contactInfo, files);
-  Contact.collection.save(c,cb);
+Contact.create = function(user, contactInfo, file, cb){
+  var c = new Contact(user, contactInfo, file);
+  console.log('c in Contact.create in model>>>>>>>', c);
+  Contact.collection.save(c, cb);
 };
 
 Contact.all = function(cb){
@@ -70,25 +71,18 @@ Contact.prototype.save = function(fields, files, cb){
 
 module.exports = Contact;
 
-// HELPER FUNCTIONS
+// HELPER FUNCTION
 
 function stashPhoto(file, contactId){
 
-  console.log('');
   var tempPath = file.file[0].path;
-  tempPath = tempPath.toString();
 
-  if(!file.size){return;}
+  if(!file.file[0].size){return;}
 
-  console.log('');
   var relDir  = '/img/',
-      absDir  = __dirname + '/../../public' + relDir;
-
-  console.log('');
-  var ext       = path.extname(tempPath);
-
-  console.log('');
-  var name      = contactId + ext,
+      absDir  = __dirname + '/../../public' + relDir,
+      ext     = path.extname(tempPath),
+      name    = contactId + ext,
       absPath = absDir + name,
       relPath = relDir + name;
 
