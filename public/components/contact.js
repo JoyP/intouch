@@ -5,7 +5,6 @@
   .factory('Contact', ['$http', '$upload', function($http, $upload){
 
     function create(contact){
-      console.log('contact in contactfactory>>>>>>>>', contact);
       return $http.post('/contacts', contact);
     }
 
@@ -13,9 +12,9 @@
       return $http.get('/contacts');
     }
 
-    function addContactWithFiles(contact, files, cb){
+    function addContactWithFiles(contact, files){
       var file = files[0];
-      $upload.upload({
+      return $upload.upload({
         url: '/contacts',
         method: 'POST',
         //headers: {'header-key': 'header-value'},
@@ -34,8 +33,7 @@
       // .xhr(funtion(xhr){xhr.upload.addeventListener(...)})
 
       //console.log('contact in addContactWithFiles right before callback>>>>>>>', contact);
-      cb(contact);
-      return $http.get('/contacts', contact);
+//      cb(contact);
     }
 
     return {create:create, findContacts:findContacts, addContactWithFiles:addContactWithFiles};

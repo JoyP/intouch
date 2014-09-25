@@ -15,8 +15,8 @@ exports.create = function(req, res){
       console.log('success before it is sent back to Angular>>>>', success);
       console.log('contact after creation in exports.create>>>>', contact);
       Contact.findById(contact.upserted[0]._id, function(err, contact){
-        console.log('contact before it is sent back to Angular>>>>', contact);
-        res.send({err:err, contact:contact});
+        console.log('CONTACT in exports.create before it is sent back to Angular>>>>', contact);
+        res.send({contact:contact});
       });
     });
   });

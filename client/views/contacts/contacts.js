@@ -16,10 +16,8 @@
     };
 
     $scope.add = function(){
-      console.log('$scope.files in contact controller>>>>>>>>', $scope.files);
-      Contact.addContactWithFiles($scope.contact, $scope.files, function(response){
-        console.log('response in contact controller>>>>>>', response);
-        console.log('$scope.contact in contact controller>>>>>>>>>>>>>>>', $scope.contact);
+      Contact.addContactWithFiles($scope.contact, $scope.files).then(function(response){
+        $scope.contact = response.data.contact;
         $scope.contacts.push($scope.contact);
         $scope.contact = {};
         $scope.toggleAdd();
@@ -27,7 +25,6 @@
     };
 
     $scope.onFileSelect = function($files){
-      console.log('$files in contact controller>>>>>>>>', $files);
       $scope.files = $files;
     };
 
