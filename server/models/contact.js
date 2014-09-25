@@ -1,29 +1,30 @@
 'use strict';
 
 var Mongo  = require('mongodb'),
-    _      = require('underscore'),
     fs     = require('fs'),
-    path   = require('path');
+    path   = require('path'),
+    _      = require('underscore');
 
-
-function Contact(ownerId, fields, files){
+function Contact(ownerId, contactInfo, files){
+  this._id      = new Mongo.ObjectID();
   this.ownerId  = Mongo.ObjectID(ownerId);
-  this.fname    = fields.fname[0];
-  this.lname    = fields.lname[0];
-  this.phone    = fields.phone[0];
-  this.email    = fields.email[0];
-  this.street   = fields.street[0];
-  this.city     = fields.city[0];
-  this.zip      = fields.zip[0];
-  this.bday     = (fields.bday[0]) ? (new Date(fields.bday[0])) : '';
-  this.photo    = this.stashPhoto(files[0], this._id);
+  this.fname    = contactInfo.fname;
+  this.lname    = contactInfo.lname;
+  this.phone    = contactInfo.phone;
+  this.email    = contactInfo.email;
+  this.street   = contactInfo.street;
+  this.city     = contactInfo.city;
+  this.zip      = contactInfo.zip;
+  this.bday     = (contactInfo.bday) ? (new Date(contactInfo.bday)) : '';
+  this.photo    = stashPhoto(files, this._id);
 }
+
 Object.defineProperty(Contact, 'collection',{
   get: function(){return global.mongodb.collection('contacts');}
 });
 
-Contact.create = function(user, fields, files, cb){
-  var c = new Contact(user, fields, files);
+Contact.create = function(user, contactInfo, files, cb){
+  var c = new Contact(user, contactInfo, files);
   Contact.collection.save(c,cb);
 };
 
@@ -44,12 +45,15 @@ Contact.findById = function(id, cb){
   });
 };
 
-Contact.prototype.save = function(fields, cb){
+Contact.prototype.save = function(fields, files, cb){
   var properties = Object.keys(fields),
     self       = this;
 
   properties.forEach(function(property){
     switch(property){
+      case 'photo':
+        self.photo = stashPhoto(files[0], self._id);
+        break;
       case 'bday':
         self.bday = new Date(fields[property]);
         break;
@@ -60,6 +64,7 @@ Contact.prototype.save = function(fields, cb){
 
   this._id      = Mongo.ObjectID(this._id);
   this.ownerId  = Mongo.ObjectID(this.ownerId);
+
   Contact.collection.save(this, cb);
 };
 
@@ -67,15 +72,27 @@ module.exports = Contact;
 
 // HELPER FUNCTIONS
 
-Contact.prototype.stashPhoto = function(file){
+function stashPhoto(file, contactId){
+
+  console.log('');
+  var tempPath = file.file[0].path;
+  tempPath = tempPath.toString();
 
   if(!file.size){return;}
 
-  var stashDir  = __dirname + '/../public/assets/img/',
-      ext       = path.extname(file.path),
-      name      = this._id + ext,
-      stashPath = stashDir + name;
+  console.log('');
+  var relDir  = '/img/',
+      absDir  = __dirname + '/../../public' + relDir;
 
-  fs.renameSync(file.path, stashPath);
-  return stashPath;
-};
+  console.log('');
+  var ext       = path.extname(tempPath);
+
+  console.log('');
+  var name      = contactId + ext,
+      absPath = absDir + name,
+      relPath = relDir + name;
+
+  fs.renameSync(tempPath, absPath);
+  return relPath;
+}
+
