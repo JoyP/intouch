@@ -11,6 +11,7 @@
     $scope.update = function(){
       Show.updateContact($scope.contact, $scope.files).then(function(response){
         $scope.contact = response.data.contact;
+        // need to refresh page here so updated contact shows immediately
         $scope.toggleContact();
       });
     };

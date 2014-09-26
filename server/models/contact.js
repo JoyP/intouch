@@ -25,7 +25,6 @@ Object.defineProperty(Contact, 'collection',{
 
 Contact.create = function(user, contactInfo, file, cb){
   var c = new Contact(user, contactInfo, file);
-  console.log('c in Contact.create in model>>>>>>>', c);
   Contact.collection.save(c, cb);
 };
 
@@ -55,9 +54,6 @@ Contact.prototype.save = function(fields, file, cb){
       case 'photo':
         self.photo = stashPhoto(file, self._id);
         break;
-      case 'bday':
-        self.bday = new Date(fields[property]);
-        break;
       default:
         self[property] = fields[property];
     }
@@ -65,6 +61,7 @@ Contact.prototype.save = function(fields, file, cb){
 
   this._id      = Mongo.ObjectID(this._id);
   this.ownerId  = Mongo.ObjectID(this.ownerId);
+  this.bday     = (this.bday) ? (new Date(this.bday)) : '';
 
   Contact.collection.save(this, cb);
 };
@@ -75,20 +72,21 @@ module.exports = Contact;
 
 function stashPhoto(files, contactId){
 
-  console.log('files in stashPhoto>>>>>>>>>', files);
-  console.log('files.file[0] in stashPhoto>>>>>>>', files.file[0]);
-  var tempPath = files.file[0].path;
+  // if no file was selected, 'files' is an empty object instead of null
+  // this returns an empty string if no file is in the files object
+  if(files.file){
+    var tempPath  = files.file[0].path,
+        relDir    = '/img/',
+        absDir    = __dirname + '/../../public' + relDir,
+        ext       = path.extname(tempPath),
+        name      = contactId + ext,
+        absPath   = absDir + name,
+        relPath   = relDir + name;
 
-  if(!files.file[0].size){return;}
-
-  var relDir  = '/img/',
-      absDir  = __dirname + '/../../public' + relDir,
-      ext     = path.extname(tempPath),
-      name    = contactId + ext,
-      absPath = absDir + name,
-      relPath = relDir + name;
-
-  fs.renameSync(tempPath, absPath);
-  return relPath;
+    fs.renameSync(tempPath, absPath);
+    return relPath;
+  }else{
+    return ('');
+  }
 }
 

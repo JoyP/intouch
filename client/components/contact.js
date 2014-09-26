@@ -9,7 +9,7 @@
     }
 
     function addContactWithFiles(contact, files){
-      var file = files[0];
+      var file = files ? files[0] : null;
       return $upload.upload({
         url: '/contacts',
         method: 'POST',
