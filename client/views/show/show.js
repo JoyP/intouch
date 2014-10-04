@@ -10,17 +10,9 @@
 
     $scope.update = function(){
       Show.updateContact($scope.contact, $scope.files).then(function(response){
-        //$scope.$root.$eval(function(){
-        Show.findById($routeParams.contactId).then(function(response){
-          $scope.contact = response.data.contact;
-          $scope.toggleContact();
-          //$scope.reload =function(){
-          //  $window.location.reload();
-          //};
-           //return $http.get('/contacts/' + $scope.contact._id);
-        });
-        //});
-         //return $http.get('/contacts/' + contactId);
+        $scope.toggleContact();
+        // reload page so that updated photo is displayed
+        $window.location.reload();
       });
     };
 

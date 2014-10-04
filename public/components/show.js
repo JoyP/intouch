@@ -13,6 +13,7 @@
     }
 
     function updateContact(contact, files){
+      // prevents errors if no file is selected
       var file = files ? files[0] : null;
       return $upload.upload({
         url: '/contacts/:id',

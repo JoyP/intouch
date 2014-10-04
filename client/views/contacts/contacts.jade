@@ -47,9 +47,9 @@ h3 Contacts
 
 .row
   .col-cs-12
-    ul(ng-repeat='c in contacts')
-      .panel.panel-default.contact: a(href='/#/contacts/{{c._id}}')
+    ul(ng-repeat='contact in contacts')
+      .panel.panel-default.contact: a(href='/#/contacts/{{contact._id}}')
         .panel-body.contact
-          img.contact(src='{{c.photo}}')
+          img.contact(src='{{contact.photo}}')
           &nbsp
-          {{c.fname}}{{c.lname}}
+          {{contact.fname}} &nbsp {{contact.lname}}

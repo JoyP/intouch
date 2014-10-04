@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Amatic+SC);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
 body {
-  background-image: url('/img/bodybackground.jpg');
+  background-image: url('/assets/img/bodybackground.jpg');
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.2);
 }

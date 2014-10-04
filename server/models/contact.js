@@ -73,11 +73,10 @@ module.exports = Contact;
 
 function stashPhoto(files, contactId){
 
-  // this returns null if no file is in the files object
-  // otherwise, 'files' would be an empty object
+  // this returns a generic photo if no file is in the files object
   if(files.file){
     var tempPath  = files.file[0].path,
-        relDir    = '/img/',
+        relDir    = '/assets/img/',
         absDir    = __dirname + '/../../public' + relDir,
         ext       = path.extname(tempPath),
         name      = contactId + ext,
@@ -87,7 +86,7 @@ function stashPhoto(files, contactId){
     fs.renameSync(tempPath, absPath);
     return relPath;
   }else{
-    return (null);
+    return ('/assets/img/generic-profile.png');
   }
 }
 
