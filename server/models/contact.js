@@ -46,13 +46,14 @@ Contact.findById = function(id, cb){
 };
 
 Contact.prototype.save = function(fields, file, cb){
-  var properties = Object.keys(fields),
-    self       = this;
+  var properties  = Object.keys(fields),
+    self          = this;
 
   properties.forEach(function(property){
     switch(property){
       case 'photo':
-        self.photo = stashPhoto(file, self._id);
+        var newPhoto = stashPhoto(file, self._id);
+        self.photo = newPhoto ? newPhoto : self.photo;
         break;
       default:
         self[property] = fields[property];
@@ -61,7 +62,7 @@ Contact.prototype.save = function(fields, file, cb){
 
   this._id      = Mongo.ObjectID(this._id);
   this.ownerId  = Mongo.ObjectID(this.ownerId);
-  this.bday     = (this.bday) ? (new Date(this.bday)) : '';
+  this.bday     = (this.bday) ? (new Date(this.bday)) : null;
 
   Contact.collection.save(this, cb);
 };
@@ -72,8 +73,8 @@ module.exports = Contact;
 
 function stashPhoto(files, contactId){
 
-  // if no file was selected, 'files' is an empty object instead of null
-  // this returns an empty string if no file is in the files object
+  // this returns null if no file is in the files object
+  // otherwise, 'files' would be an empty object
   if(files.file){
     var tempPath  = files.file[0].path,
         relDir    = '/img/',
@@ -86,7 +87,7 @@ function stashPhoto(files, contactId){
     fs.renameSync(tempPath, absPath);
     return relPath;
   }else{
-    return ('');
+    return (null);
   }
 }
 

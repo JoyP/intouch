@@ -23,13 +23,8 @@
         // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
         //formDataAppender: function(formData, key, val){}
       });
-      //.error(...)
-      //.then(success, error, progress);
       // access or attach event listeners to the underlying XMLHttpRequest
       // .xhr(funtion(xhr){xhr.upload.addeventListener(...)})
-
-      //console.log('contact in addContactWithFiles right before callback>>>>>>>', contact);
-//      cb(contact);
     }
 
     return {findContacts:findContacts, addContactWithFiles:addContactWithFiles};
