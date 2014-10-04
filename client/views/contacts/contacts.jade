@@ -46,10 +46,13 @@ h3 Contacts
     button.btn.btn-primary(ng-click='toggleAdd()', ng-hide='showAdd') Add Contact
 
 .row
-  .col-cs-12
+  .col-xs-12
+
+.row
+  .col-xs-12
     ul(ng-repeat='contact in contacts')
       .panel.panel-default.contact: a(href='/#/contacts/{{contact._id}}')
         .panel-body.contact
           img.contact(src='{{contact.photo}}')
           &nbsp
-          {{contact.fname}} &nbsp {{contact.lname}}
+          {{contact.fname}}  {{contact.lname}}
