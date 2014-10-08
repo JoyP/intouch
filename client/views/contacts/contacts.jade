@@ -35,7 +35,7 @@ h3 Contacts
         label(for='twiter') Twitter
         input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
       .form-group
-        label(for='photo') Photo - onFileSelect
+        label(for='photo') Contact Photo
         input(type='file', ng-file-select='onFileSelect($files)', ng-model='contact.photo')
       .form-group
         button.btn.btn-primary(ng-show='newContact.$valid', ng-click='add()') Add Contact
