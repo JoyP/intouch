@@ -30,12 +30,12 @@ h3 Contacts
         input.form-control#bday(name='bday', type='date', ng-model='contact.bday')
       .form-group
         label(for='facebook') Facebook
-        input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook')
+        input.form-control#facebook(name='facebook', type='text', ng-model='contact.facebook', placeholder='http://www.facebook.com/johnsmith')
       .form-group
         label(for='twiter') Twitter
-        input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter')
+        input.form-control#twitter(name='twitter', type='text', ng-model='contact.twitter', placeholder='http://www.twitter.com/johnsmith')
       .form-group
-        label(for='photo') Contact Photo
+        label(for='photo') Photo
         input(type='file', ng-file-select='onFileSelect($files)', ng-model='contact.photo')
       .form-group
         button.btn.btn-primary(ng-show='newContact.$valid', ng-click='add()') Add Contact

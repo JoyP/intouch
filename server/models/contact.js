@@ -16,6 +16,8 @@ function Contact(ownerId, contactInfo, files){
   this.city     = contactInfo.city;
   this.zip      = contactInfo.zip;
   this.bday     = (contactInfo.bday) ? (new Date(contactInfo.bday)) : '';
+  this.facebook = contactInfo.facebook;
+  this.twitter  = contactInfo.twitter;
   this.photo    = stashPhoto(files, this._id);
 }
 
