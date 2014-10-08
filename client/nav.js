@@ -14,5 +14,12 @@
         $scope.email = email;
       });
     });
+
+    $scope.$on('logout', function(event){
+      $localForage.setItem('email').then(function(){
+        $scope.email = null;
+      });
+    });
+
   }]);
 })();
